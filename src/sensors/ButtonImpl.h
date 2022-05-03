@@ -3,6 +3,7 @@
 
 #include "Button.h"
 
+//classe senza implementazione
 class ButtonImpl: public Button {
  
 public: 
