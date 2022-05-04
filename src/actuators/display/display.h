@@ -15,7 +15,7 @@ private:
     LiquidCrystal_I2C lcd = LiquidCrystal_I2C(address, WIDTH, HEIGHT);
 
 public: 
-    display(int address, int width, int height);
+    Display(int address, int width, int height);
     void setup();
     void clear();
     void print(String message);
