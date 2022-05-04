@@ -1,13 +1,10 @@
 #include <Arduino.h>
 #include "machine.h"
 #include "scheduler.h"
-#include "./sensors/pot/pot.h"
 #include "./tasks/SelfTestTask/SelfTask.h"
 
 Scheduler* sched;
-Potentiometer* pot;
 void setup() {
-   pot = new Potentiometer(A0);
   sched = new Scheduler();
   sched -> init(10);
 
@@ -28,7 +25,5 @@ void setup() {
 }
 
 void loop() {
-  Serial.println(pot->getValue());
-  delay(100);
-  //sched->schedule();
+  sched->schedule();
 }
