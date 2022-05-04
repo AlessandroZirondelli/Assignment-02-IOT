@@ -26,6 +26,7 @@
                 this->state = SIMULATION;
                 Serial.println("SONO in IDLE");
             }   
+            break;
         }
 
         case SIMULATION: {
@@ -37,6 +38,7 @@
                 this->servoMotor->setPosition(0);
                 this->state = CHECK;
             }
+            break;
         }
 
         case CHECK: {
@@ -46,6 +48,7 @@
                 this->machine->setStart();
                 this->state = IDLE;
             }
+            break;
         }
         
         case ERROR: {
@@ -54,6 +57,7 @@
             this->machine->setAssistance();
             this->state = IDLE;
             Serial.println("Assistance required");
+            break;
         }
     }
  };
