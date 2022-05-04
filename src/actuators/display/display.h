@@ -1,5 +1,5 @@
-#ifndef __DISPLAYIMPL__
-#define __DISPLAYIMPL__
+#ifndef __DISPLAY__
+#define __DISPLAY__
 
 #define WIDTH  16
 #define HEIGHT  2

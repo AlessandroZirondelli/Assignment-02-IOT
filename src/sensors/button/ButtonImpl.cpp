@@ -4,10 +4,7 @@
 //classe con implementazione
 ButtonImpl::ButtonImpl(int pin){
   this->pin = pin;    
-} 
-  
-void ButtonImpl::setup(){
-  pinMode(this->pin, INPUT); 
+  pinMode(pin, INPUT); 
 }
 
 bool ButtonImpl::isPressed(){
