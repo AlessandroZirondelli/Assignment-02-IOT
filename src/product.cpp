@@ -1,6 +1,6 @@
 #include <Arduino.h>
 //#include <string>
-
+#include "product.h"
 Product::Product(){
     this->quantity = 0;
     this->name = "";

@@ -14,7 +14,7 @@ public:
     Product();
     Product(String name, int quantity);
     String getName(); 
-    void setName();
+    void setName(String name);
     int getQuantity();
     void setQuantity(int quantity);
 
