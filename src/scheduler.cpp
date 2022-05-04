@@ -3,9 +3,16 @@
 
 volatile bool timerFlag;
 
+
+Scheduler::Scheduler(){
+  
+}
+
+
 void timerHandler(void){
   timerFlag = true;
 }
+
 
 void Scheduler::init(int basePeriod){
   this->basePeriod = basePeriod;
