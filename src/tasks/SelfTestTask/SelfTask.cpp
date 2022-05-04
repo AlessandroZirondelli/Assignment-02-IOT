@@ -23,11 +23,13 @@
         case IDLE: { //need to check if it's possibile to do a self-test
             if(this->machine->isStart()){
                 this->machine->setSelfTest();
-                this->state = CHECK;
+                this->state = SIMULATION;
+                Serial.println("SONO in IDLE");
             }   
         }
 
         case SIMULATION: {
+            Serial.println("Sono in simulation");
             int currentAngle = this->servoMotor->getAnglePosition();
             if(currentAngle < 180){
                 this->servoMotor->setPosition(currentAngle+GAPROTATION);
@@ -42,6 +44,7 @@
                 this->state = ERROR;
             } else {
                 this->machine->setStart();
+                this->state = IDLE;
             }
         }
         
@@ -49,6 +52,7 @@
             //print on display LCD "Assistance required";
             //this->display->print("Assistance required");
             this->machine->setAssistance();
+            this->state = IDLE;
             Serial.println("Assistance required");
         }
     }
