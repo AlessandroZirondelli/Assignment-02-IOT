@@ -47,8 +47,9 @@
         
         case ERROR: {
             //print on display LCD "Assistance required";
-            //this->machine->setAssistance();
             //this->display->print("Assistance required");
+            this->machine->setAssistance();
+            Serial.println("Assistance required");
         }
     }
  };
