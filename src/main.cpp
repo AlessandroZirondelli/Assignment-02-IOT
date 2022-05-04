@@ -2,9 +2,11 @@
 #include "machine.h"
 #include "scheduler.h"
 #include "./sensors/pot/pot.h"
+#include "./tasks/SelfTestTask/SelfTask.h"
+
 Scheduler* sched;
 void setup() {
-  Potentiometer* pot = new Potentiometer(A0);
+ // Potentiometer* pot = new Potentiometer(A0);
   sched = new Scheduler();
   sched -> init(10);
 
@@ -18,12 +20,13 @@ void setup() {
       Serial.print("Max product reached");
     }
   }
-  
-  //sched->addTask();
+  Task* taskSelfTest = new SelfTask(mac);
+  taskSelfTest->init(5000); // periodo selftest,
+  sched->addTask(taskSelfTest);
   
 }
 
 void loop() {
-  Serial.print(pot->getValue());
-  //sched->schedule();
+  //Serial.print(pot->getValue());
+  sched->schedule();
 }

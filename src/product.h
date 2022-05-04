@@ -7,7 +7,7 @@
 class Product {
 
 private:
-    int quatity;
+    int quantity;
     String name;
     
 public:
