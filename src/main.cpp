@@ -1,8 +1,10 @@
 #include <Arduino.h>
 #include "machine.h"
 #include "scheduler.h"
+#include "./sensors/pot/pot.h"
 Scheduler* sched;
 void setup() {
+  Potentiometer* pot = new Potentiometer(A0);
   sched = new Scheduler();
   sched -> init(10);
 
@@ -22,5 +24,6 @@ void setup() {
 }
 
 void loop() {
+  Serial.print(pot->getValue());
   //sched->schedule();
 }
