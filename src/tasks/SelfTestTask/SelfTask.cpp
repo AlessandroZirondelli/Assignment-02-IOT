@@ -14,6 +14,7 @@
      this -> machine = machine;
      this -> tempSensor = new TempSensorLM35(TMP_PIN);
      this -> servoMotor = new ServoMotorImpl(SERVO_PIN);
+     //this -> display = new Display();
      this -> state = IDLE;
  };
 
@@ -47,6 +48,7 @@
         case ERROR: {
             //print on display LCD "Assistance required";
             //this->machine->setAssistance();
+            //this->display->print("Assistance required");
         }
     }
  };
