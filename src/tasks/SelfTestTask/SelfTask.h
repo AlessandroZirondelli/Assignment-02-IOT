@@ -15,9 +15,10 @@ public:
     void tick();
 
 private:
-    enum{IDLE,CHECK,ERROR};
+    enum{IDLE,SIMULATION,CHECK,ERROR} state;
     TempSensor * tempSensor;
     ServoMotor * servoMotor;
     Machine * machine;
+
 };
 #endif

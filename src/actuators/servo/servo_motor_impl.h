@@ -13,9 +13,11 @@ public:
   void on();
   void setPosition(int angle);
   void off();
+  int getAnglePosition();
     
 private:
   int pin; 
+  int currentAnglePosition;
   ServoTimer2 motor; 
 };
 

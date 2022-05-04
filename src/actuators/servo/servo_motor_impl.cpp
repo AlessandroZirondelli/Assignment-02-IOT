@@ -3,6 +3,7 @@
 
 ServoMotorImpl::ServoMotorImpl(int pin){
   this->pin = pin;  
+  this->currentAnglePosition=0;
 } 
 
 void ServoMotorImpl::on(){
@@ -25,4 +26,8 @@ void ServoMotorImpl::setPosition(int angle){
 
 void ServoMotorImpl::off(){
   motor.detach();    
+}
+
+int ServoMotorImpl::getAnglePosition(){
+  return this->currentAnglePosition;
 }
