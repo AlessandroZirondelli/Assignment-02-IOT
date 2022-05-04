@@ -5,8 +5,9 @@
 #include "./tasks/SelfTestTask/SelfTask.h"
 
 Scheduler* sched;
+Potentiometer* pot;
 void setup() {
- // Potentiometer* pot = new Potentiometer(A0);
+   pot = new Potentiometer(A0);
   sched = new Scheduler();
   sched -> init(10);
 
@@ -27,6 +28,7 @@ void setup() {
 }
 
 void loop() {
-  //Serial.print(pot->getValue());
-  sched->schedule();
+  Serial.println(pot->getValue());
+  delay(100);
+  //sched->schedule();
 }
