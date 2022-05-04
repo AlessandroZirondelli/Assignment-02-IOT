@@ -6,7 +6,7 @@
 
 #include "LiquidCrystal_I2C.h"
 
-class display {
+class Display {
 
 private:
     int address = 0x27; //I2C

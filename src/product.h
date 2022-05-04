@@ -6,6 +6,10 @@
 
 class Product {
 
+private:
+    int quatity;
+    String name;
+    
 public:
     Product();
     Product(String name, int quantity);
@@ -13,13 +17,6 @@ public:
     void setName();
     int getQuantity();
     void setQuantity(int quantity);
-
-  
-
-
-private:
-    int quatity;
-    String name;
 
 };
 

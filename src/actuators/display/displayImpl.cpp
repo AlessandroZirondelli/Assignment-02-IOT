@@ -1,26 +1,26 @@
-#include "display.h"
+#include "actuators/display/display.h"
 #include "Arduino.h"
 
-display::displayImpl(int address, int width, int height) {
+Display::DisplayImpl(int address, int width, int height) {
     this->address = address;
     this->lcd = LiquidCrystal_I2C(this->address, width, height);
 }
 
-void display::setup() {
+void Display::setup() {
     lcd.init();
     lcd.backlight();
 }
 
-void display::clear() {
+void Display::clear() {
     lcd.clear();
 }
 
-void display::selectLine(int row, int column) {
+void Display::selectLine(int row, int column) {
     this->column = column;
     this->row = row;
 }
 
-void display::print(String message) {
+void Display::print(String message) {
     lcd.setCursor(this->column, this->row);
     lcd.print(message);
 }
