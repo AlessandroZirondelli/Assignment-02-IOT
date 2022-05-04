@@ -1,10 +1,15 @@
 #include <Arduino.h>
 #include "machine.h"
 #include "scheduler.h"
+#include "config.h"
 #include "./tasks/SelfTestTask/SelfTask.h"
+#include "./sensors/pir/pir.h"
+
 
 Scheduler* sched;
 void setup() {
+  Pir* pir = new Pir(PIT_PIN);
+  pir->calibrate(); 
   sched = new Scheduler();
   sched -> init(10);
 
@@ -21,9 +26,10 @@ void setup() {
   Task* taskSelfTest = new SelfTask(mac);
   taskSelfTest->init(5000); // periodo selftest,
   sched->addTask(taskSelfTest);
-  
+
 }
 
 void loop() {
+  
   sched->schedule();
 }
