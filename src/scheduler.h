@@ -12,6 +12,7 @@ class Scheduler {
   Task* taskList[MAX_TASKS];  
 
 public:
+  Scheduler();
   void init(int basePeriod);  
   virtual bool addTask(Task* task);  
   virtual void schedule();

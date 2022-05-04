@@ -18,7 +18,6 @@ public:
     bool isWait();
     bool isSelfTest();
     bool isAssistance();
-
     void setStart();
     void setSelect();
     void setMaking();
