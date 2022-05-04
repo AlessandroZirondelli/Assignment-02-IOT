@@ -3,6 +3,14 @@
 
 class Task {
 
+  private:
+
+  int myPeriod;
+  int timeElapsed;
+  bool active;
+  bool periodic;
+  bool completed;
+
 public:
   Task(){
     active = false;
@@ -56,14 +64,6 @@ public:
     this->active = active;
   }
   
-private:
-
-  int myPeriod;
-  int timeElapsed;
-  bool active;
-  bool periodic;
-  bool completed;
-
 };
 
 #endif
