@@ -1,7 +1,7 @@
 #include "actuators/display/display.h"
 #include "Arduino.h"
 
-Display::DisplayImpl(int address, int width, int height) {
+Display::Display(int address, int width, int height) {
     this->address = address;
     this->lcd = LiquidCrystal_I2C(this->address, width, height);
 }
