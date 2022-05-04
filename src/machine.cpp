@@ -16,22 +16,22 @@ void Machine::init(){
 
     int Machine::getQtnProduct(String name){
         for(int i = 0; i<numProd;i++){
-            if(productList[numProd] -> getName().equals(name)){
-                return productList[numProd] -> getQuantity();
+            if(productList[i] -> getName().equals(name)){  
+                return productList[i] -> getQuantity();
             }
         }
         return 0;
     }
     void Machine::setQtnProduct(String name, int quantity){
         for(int i = 0; i<numProd;i++){
-            if(productList[numProd] -> getName().equals(name)){
-                productList[numProd] -> setQuantity(quantity);
+            if(productList[i] -> getName().equals(name)){
+                productList[i] -> setQuantity(quantity);
             }
-        }
-        
+        }   
     }
     bool Machine::addProduct(Product* product){
-        if (numProd < MAX_PRODUCT-1){
+
+        if (numProd < MAX_PRODUCT){
             productList[numProd] = product;
             numProd++;
             return true;
@@ -39,7 +39,7 @@ void Machine::init(){
             return false; 
         }
     }
-  
+    
     bool Machine::isStart(){
         return state == START;
     }
