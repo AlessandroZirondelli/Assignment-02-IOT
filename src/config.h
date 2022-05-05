@@ -6,4 +6,6 @@
 //#define ECHO_PIN 
 //#define TRIG_PIN
 
+#define PIT_PIN 7
+
 #endif
