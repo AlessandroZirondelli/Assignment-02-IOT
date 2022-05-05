@@ -48,6 +48,7 @@ void makeProductTask::tick() {
             this->pDisplay->clear();
             this->pDisplay->print(this->pProduct->getName() + MSG_COMPLETE);
             this->pMachine->setWait();
+            this->state = IDLE;
             break;
         }
     }
