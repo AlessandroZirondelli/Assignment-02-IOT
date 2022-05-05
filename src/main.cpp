@@ -15,7 +15,9 @@ void setup() {
 
   Serial.begin(9600);
   Machine* mac = new Machine();
-  Product* productInput[] = {new Product("Chocolate",4),new Product("Coffee",5), new Product("Tea",4)}; 
+  ProductListed* productInput[] = {new ProductListed(new Product("Chocolate"),1),
+                                  new ProductListed(new Product("Tea"),2),
+                                  new ProductListed(new Product("Coffee"),3)}; 
   int lengthInput = sizeof(productInput)/sizeof(productInput[0]);
   for(int i = 0 ; i<lengthInput; i++){
     bool res = mac -> addProduct( productInput[i]);
@@ -27,9 +29,11 @@ void setup() {
   taskSelfTest->init(5000); // periodo selftest,
   sched->addTask(taskSelfTest);
 
+
+
 }
 
 void loop() {
-  
-  sched->schedule();
+
+  //sched->schedule();
 }

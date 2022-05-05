@@ -7,16 +7,17 @@
 class Product {
 
 private:
-    int quantity;
+    int price;
     String name;
     
 public:
     Product();
-    Product(String name, int quantity);
+    Product(String name);
+    Product(String name, int price);
     String getName(); 
     void setName(String name);
-    int getQuantity();
-    void setQuantity(int quantity);
+    int getPrice();
+    void setPrice(int price);
 
 };
 
