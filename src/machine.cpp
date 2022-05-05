@@ -15,48 +15,66 @@ void Machine::init(){
 }
 
     
-    bool Machine::addCatalog(Catalog* catalog){
-        this-> catalog = catalog;
-    }
-    Catalog* Machine::getCatalog(){
-        return catalog;
-    }
-    bool Machine::isStart(){
-        return state == START;
-    }
-    bool Machine::isSelect(){
-        return state == SELECT;
-    }
-    bool Machine::isMaking(){
-        return state == MAKING;
-    }
-    bool Machine::isWait(){
-        return state == WAIT;
-    }
-    bool Machine::isSelfTest(){
-        return state == SELFTEST;
-    }
-    bool Machine::isAssistance(){
-        return state == ASSISTANCE;
-    }
+bool Machine::addCatalog(Catalog* catalog){
+    this-> catalog = catalog;
+}
+Catalog* Machine::getCatalog(){
+    return catalog;
+}
+bool Machine::isStart(){
+    return state == START;
+}
+bool Machine::isSelect(){
+    return state == SELECT;
+}
+bool Machine::isMaking(){
+    return state == MAKING;
+}
+bool Machine::isWait(){
+    return state == WAIT;
+}
+bool Machine::isSelfTest(){
+    return state == SELFTEST;
+}
+bool Machine::isAssistance(){
+    return state == ASSISTANCE;
+}
 
-    void Machine::setStart(){
-        state = START;
-    }
-    void Machine::setSelect(){
-        state = SELECT;
-    }
-    void Machine::setMaking(){
-        state = MAKING;
-    }
-    void Machine::setWait(){
-        state = WAIT;
-    }
-    void Machine::setSelfTest(){
-        state = SELFTEST;
-    }
-    void Machine::setAssistance(){
-        state = ASSISTANCE;
-    }
+void Machine::setStart(){
+    state = START;
+}
+void Machine::setSelect(){
+    state = SELECT;
+}
+void Machine::setMaking(){
+    state = MAKING;
+}
+void Machine::setWait(){
+    state = WAIT;
+}
+void Machine::setSelfTest(){
+    state = SELFTEST;
+}
+void Machine::setAssistance(){
+    state = ASSISTANCE;
+}
+void Machine::setErrorRefill(){
+    alert = REFILL;
+}
+void Machine::setErrorNone(){
+    alert = NONE;
+}
+void Machine::setTemperatureAlert(){
+    alert = TEMPERATURE;
+}
+bool Machine::isErrorRefill(){
+    return alert == REFILL;
+}
+bool Machine::isErrorNone(){
+    return alert == NONE;
+}
+bool Machine::isTemperatureAlert(){
+    return alert == TEMPERATURE;
+}
 
 

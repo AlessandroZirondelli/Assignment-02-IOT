@@ -16,6 +16,7 @@ public:
     int getQtnProduct(String name); 
     void setQtnProduct(String name, int qtn);
     bool addProduct(ProductListed* product);
+    int getTotalDisponibility();
 
 };
 

@@ -18,6 +18,7 @@ public:
     bool isWait();
     bool isSelfTest();
     bool isAssistance();
+
     void setStart();
     void setSelect();
     void setMaking();
@@ -25,8 +26,17 @@ public:
     void setSelfTest();
     void setAssistance();
 
+    void setErrorRefill();
+    void setErrorNone();
+    void setTemperatureAlert();
+
+    bool isErrorRefill();
+    bool isErrorNone();
+    bool isTemperatureAlert();
+
 private:
     enum { START, SELECT, MAKING, WAIT,SELFTEST, ASSISTANCE } state;
+    enum {NONE, REFILL,TEMPERATURE} alert; 
     Catalog* catalog;
 
 

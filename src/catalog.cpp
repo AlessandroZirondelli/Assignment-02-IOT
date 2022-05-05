@@ -30,3 +30,10 @@ bool Catalog::addProduct(ProductListed* product){
         return false; 
     }
 }
+int Catalog::getTotalDisponibility(){
+    int tot = 0;
+    for(int i = 0; i<numProd;i++){
+        tot = tot + productList[i] -> getQuantity();   
+    }
+    return tot;
+}
