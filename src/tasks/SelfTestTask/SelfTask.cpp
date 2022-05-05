@@ -7,13 +7,14 @@
 #define TCHECK 180 // seconds
 #define TEMPMIN 17 // Celsius degrees 
 #define TEMPMAX 24 // Celsius degrees 
-#define GAPROTATION 5
+#define GAPROTATION 30
 
 
  SelfTask::SelfTask(Machine* machine) {
      this -> machine = machine;
      this -> tempSensor = new TempSensorLM35(TMP_PIN);
      this -> servoMotor = new ServoMotorImpl(SERVO_PIN);
+     this -> servoMotor ->on();
      //this -> display = new Display();
      this -> state = IDLE;
  };
@@ -22,9 +23,10 @@
     switch (state){
         case IDLE: { //need to check if it's possibile to do a self-test
             if(this->machine->isStart()){
+                this->servoMotor->setPosition(0);
                 this->machine->setSelfTest();
                 this->state = SIMULATION;
-                Serial.println("SONO in IDLE");
+                Serial.println("Sono in idle");
             }   
             break;
         }
@@ -38,16 +40,22 @@
                 this->servoMotor->setPosition(0);
                 this->state = CHECK;
             }
+            Serial.print("Angolo ");
+            Serial.println(currentAngle);
             break;
         }
 
         case CHECK: {
-            if(tempSensor->getTemperature() > TEMPMAX || tempSensor->getTemperature() < TEMPMIN){
+            Serial.println("Sono in check");
+            float temp = tempSensor->getTemperature();
+            if( temp > TEMPMAX || temp < TEMPMIN){
                 this->state = ERROR;
             } else {
                 this->machine->setStart();
                 this->state = IDLE;
             }
+            Serial.print("Temp");
+            Serial.println(temp);
             break;
         }
         

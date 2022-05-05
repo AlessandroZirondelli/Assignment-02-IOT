@@ -9,7 +9,7 @@
 Scheduler* sched;
 void setup() {
   Pir* pir = new Pir(PIT_PIN);
-  pir->calibrate(); 
+  //pir->calibrate(); 
   sched = new Scheduler();
   sched -> init(10);
 
@@ -26,7 +26,7 @@ void setup() {
     }
   }
   Task* taskSelfTest = new SelfTask(mac);
-  taskSelfTest->init(5000); // periodo selftest,
+  taskSelfTest->init(2000); // periodo selftest,
   sched->addTask(taskSelfTest);
 
 
@@ -35,5 +35,5 @@ void setup() {
 
 void loop() {
 
-  //sched->schedule();
+  sched->schedule();
 }
