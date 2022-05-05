@@ -1,7 +1,7 @@
 #include "SelfTask.h"
 #include "machine.h"
 #include "config.h"
-#include "./actuators/temp/TempSensorLM35.h"
+#include "./sensors/temp/TempSensorLM35.h"
 #include "./actuators/servo/servo_motor_impl.h"
 
 #define TCHECK 180 // seconds
