@@ -29,7 +29,7 @@ void Machine::init(){
             }
         }   
     }
-    bool Machine::addProduct(Product* product){
+    bool Machine::addProduct(ProductListed* product){
 
         if (numProd < MAX_PRODUCT){
             productList[numProd] = product;

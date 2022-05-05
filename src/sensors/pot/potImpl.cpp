@@ -7,5 +7,5 @@ Potentiometer::Potentiometer(int pin){
   
 float Potentiometer::getValue(){
   float val = analogRead(pin);
-  return val / 1023.0;
+  return val;
 }

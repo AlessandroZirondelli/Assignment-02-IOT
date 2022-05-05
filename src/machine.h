@@ -1,6 +1,7 @@
 #ifndef __MACHINE__
 #define __MACHINE__
-#include "product.h"
+#include "Product.h"
+#include "ProductListed.h"
 #define MAX_PRODUCT 40
 
 
@@ -11,7 +12,7 @@ public:
     void init();
     int getQtnProduct(String name);
     void setQtnProduct(String name,int quantity);
-    bool addProduct(Product* product);
+    bool addProduct(ProductListed* product);
     bool isStart();
     bool isSelect();
     bool isMaking();
@@ -27,7 +28,7 @@ public:
 
 private:
     enum { START, SELECT, MAKING, WAIT,SELFTEST, ASSISTANCE } state;
-    Product* productList[MAX_PRODUCT]; 
+    ProductListed* productList[MAX_PRODUCT]; 
     int numProd; 
 
 };

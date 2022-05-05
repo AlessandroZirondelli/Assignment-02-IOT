@@ -1,12 +1,17 @@
 #include <Arduino.h>
 //#include <string>
-#include "product.h"
+#include "Product.h"
+
 Product::Product(){
-    this->quantity = 0;
+    this->price = 0;
     this->name = "";
 }
-Product::Product(String name, int quantity){
-    this->quantity = quantity;    
+Product::Product(String name){
+    this->price = 0;    
+    this->name = name;
+}
+Product::Product(String name, int price){
+    this->price = price;    
     this->name = name;
 }
 String Product::getName(){
@@ -15,11 +20,11 @@ String Product::getName(){
 void Product::setName(String name){
     this->name = name;
 }
-int Product::getQuantity(){
-    return this->quantity;
+int Product::getPrice(){
+    return this->price;
 }
-void Product::setQuantity(int quantity){
-    this->quantity = quantity;
+void Product::setPrice(int price){
+    this->price = price;
 }
 
 

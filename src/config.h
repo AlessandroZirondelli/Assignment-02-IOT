@@ -7,4 +7,6 @@
 #define BTNDOWN_PIN 7
 #define BTNMAKE_PIN 8
 
+#define PIT_PIN 7
+
 #endif
