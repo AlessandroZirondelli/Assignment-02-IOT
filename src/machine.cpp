@@ -3,7 +3,7 @@
 
 Machine::Machine(){
     state = START;
-    numProd = 0; 
+    this->catalog = new Catalog();
 }
 void Machine::init(){
     /*metterer nel main
@@ -14,32 +14,13 @@ void Machine::init(){
 */
 }
 
-    int Machine::getQtnProduct(String name){
-        for(int i = 0; i<numProd;i++){
-            if(productList[i] -> getName().equals(name)){  
-                return productList[i] -> getQuantity();
-            }
-        }
-        return 0;
-    }
-    void Machine::setQtnProduct(String name, int quantity){
-        for(int i = 0; i<numProd;i++){
-            if(productList[i] -> getName().equals(name)){
-                productList[i] -> setQuantity(quantity);
-            }
-        }   
-    }
-    bool Machine::addProduct(ProductListed* product){
-
-        if (numProd < MAX_PRODUCT){
-            productList[numProd] = product;
-            numProd++;
-            return true;
-        } else {
-            return false; 
-        }
-    }
     
+    bool Machine::addCatalog(Catalog* catalog){
+        this-> catalog = catalog;
+    }
+    Catalog* Machine::getCatalog(){
+        return catalog;
+    }
     bool Machine::isStart(){
         return state == START;
     }

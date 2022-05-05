@@ -9,27 +9,30 @@
 Scheduler* sched;
 void setup() {
   Pir* pir = new Pir(PIT_PIN);
-  pir->calibrate(); 
+  //pir->calibrate(); 
   sched = new Scheduler();
   sched -> init(10);
 
   Serial.begin(9600);
   Machine* mac = new Machine();
+  Catalog* catalog = new Catalog();
+  
   ProductListed* productInput[] = {new ProductListed(new Product("Chocolate"),1),
-                                  new ProductListed(new Product("Tea"),2),
-                                  new ProductListed(new Product("Coffee"),3)}; 
+                                   new ProductListed(new Product("Tea"),2),
+                                   new ProductListed(new Product("Coffee"),3)}; 
   int lengthInput = sizeof(productInput)/sizeof(productInput[0]);
   for(int i = 0 ; i<lengthInput; i++){
-    bool res = mac -> addProduct( productInput[i]);
+    bool res = catalog -> addProduct( productInput[i]);
     if(res == false){
       Serial.print("Max product reached");
     }
   }
+  mac -> addCatalog(catalog);
+
+
   Task* taskSelfTest = new SelfTask(mac);
   taskSelfTest->init(5000); // periodo selftest,
   sched->addTask(taskSelfTest);
-
-
 
 }
 

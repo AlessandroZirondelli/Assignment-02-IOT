@@ -2,7 +2,7 @@
 #define __MACHINE__
 #include "Product.h"
 #include "ProductListed.h"
-#define MAX_PRODUCT 40
+#include "catalog.h"
 
 
 class Machine {
@@ -10,9 +10,8 @@ class Machine {
 public:
     Machine();
     void init();
-    int getQtnProduct(String name);
-    void setQtnProduct(String name,int quantity);
-    bool addProduct(ProductListed* product);
+    bool addCatalog(Catalog* catalog);
+    Catalog* getCatalog();
     bool isStart();
     bool isSelect();
     bool isMaking();
@@ -28,8 +27,8 @@ public:
 
 private:
     enum { START, SELECT, MAKING, WAIT,SELFTEST, ASSISTANCE } state;
-    ProductListed* productList[MAX_PRODUCT]; 
-    int numProd; 
+    Catalog* catalog;
+
 
 };
 
