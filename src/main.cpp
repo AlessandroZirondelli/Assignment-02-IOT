@@ -8,7 +8,7 @@
 
 Scheduler* sched;
 void setup() {
-  Pir* pir = new Pir(PIT_PIN);
+  //Pir* pir = new Pir(PIT_PIN);
   //pir->calibrate(); 
   sched = new Scheduler();
   sched -> init(10);
