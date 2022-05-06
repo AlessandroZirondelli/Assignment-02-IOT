@@ -3,7 +3,7 @@
 
 #include "./tasks/Task.h"
 #include "./machine.h"
-#include "./actuators/temp/TempSensor.h"
+#include "./sensors/temp/TempSensor.h"
 #include "./actuators/servo/servo_motor.h"
 #include "./actuators/display/display.h"
 
