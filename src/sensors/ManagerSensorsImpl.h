@@ -20,8 +20,8 @@ private:
     Pir* pir;
     Potentiometer* pot;
     Button* buttonUp;
-    Button * buttonDown;
-    Button * buttonMake;
+    Button* buttonDown;
+    Button* buttonMake;
 
 
 };
