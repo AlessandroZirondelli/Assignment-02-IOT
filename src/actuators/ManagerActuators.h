@@ -8,9 +8,9 @@
 class ManagerActuators {
 
 public:
-  virtual ServoMotor getServo() = 0;
-  virtual Sonar getSonar() = 0;
-  virtual Display getDisplay() = 0;
+  virtual ServoMotor* getServo() = 0;
+  virtual Sonar* getSonar() = 0;
+  virtual Display* getDisplay() = 0;
 
 };
 
