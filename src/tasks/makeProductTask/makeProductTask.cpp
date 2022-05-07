@@ -8,6 +8,7 @@
 #include "config.h"
 
 #define TMAKING 10 //sec
+#define GAPROTATION 5
 
 #define MSG_START "Making a "
 #define MSG_COMPLETE " is ready"
@@ -16,16 +17,17 @@ makeProductTask::makeProductTask(Machine* pMachine) {
     this -> state = IDLE;
     this -> pMachine = pMachine;
     this-> pProduct = pProduct;
-
-    //this -> pPotSugar = new ;
-    this -> pDisplay = new Display(0x27,16,2);
+    this->pServoMotor = new ServoMotorImpl(SERVO_PIN);
     pDisplay->setup();
+
+    this -> pDisplay = new Display(0x27,16,2);
+    
 };
 
 void makeProductTask::tick() {
     switch (state){
         case IDLE: {
-            if(this->pMachine->isStart()){
+            if(this->pMachine->isSelect()){
                 this->pMachine->setMaking();
                 this->state = START;
             }
@@ -33,14 +35,29 @@ void makeProductTask::tick() {
         }
         
         case START: {
+            this->pDisplay->clear();
             this->pDisplay->print( MSG_START + this->pProduct->getName());
             this->state = MAKE;
             break;
         }
 
         case MAKE: {
-            //gira il motore
-            //passa il tempo
+
+            unsigned long timeStartMake=0;
+            unsigned long currentTimeMake = millis(); 
+            if (currentTimeMake - timeStartMake > TMAKING) {
+
+                //motore arriva a 180 fino a tempo tmaking
+
+                currentTimeMake = millis();
+                int currentAngle = this->pServoMotor->getAnglePosition();
+                if(currentAngle < 180){
+                    this->pServoMotor->setPosition(currentAngle+GAPROTATION);
+                } else if(currentAngle >= 180){
+                    this->pServoMotor->setPosition(0);
+                    this->state = COMPLETE;
+                }                
+            }
             break;
         }
 
@@ -49,6 +66,7 @@ void makeProductTask::tick() {
             this->pDisplay->print(this->pProduct->getName() + MSG_COMPLETE);
             this->pMachine->setWait();
             this->state = IDLE;
+            
             break;
         }
     }

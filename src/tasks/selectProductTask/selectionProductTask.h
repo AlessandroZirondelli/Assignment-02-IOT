@@ -20,6 +20,7 @@ private:
     Button* pButtonDOWN;
     Button* pButtonMAKE; 
     Display* pDisplay;
+    ProductListed* pProduct;
 
 public:
     selectionProductTask(Machine* pMachine);

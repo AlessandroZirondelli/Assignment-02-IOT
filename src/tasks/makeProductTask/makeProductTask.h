@@ -3,6 +3,7 @@
 
 #include "tasks/Task.h"
 #include "machine.h"
+
 #include "product.h"
 
 #include "actuators/display/display.h"
