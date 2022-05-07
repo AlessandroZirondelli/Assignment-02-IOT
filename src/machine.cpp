@@ -3,7 +3,7 @@
 
 Machine::Machine(){
     state = START;
-    numProd = 0; 
+    this->catalog = new Catalog();
 }
 void Machine::init(){
     /*metterer nel main
@@ -14,68 +14,67 @@ void Machine::init(){
 */
 }
 
-    int Machine::getQtnProduct(String name){
-        for(int i = 0; i<numProd;i++){
-            if(productList[i] -> getName().equals(name)){  
-                return productList[i] -> getQuantity();
-            }
-        }
-        return 0;
-    }
-    void Machine::setQtnProduct(String name, int quantity){
-        for(int i = 0; i<numProd;i++){
-            if(productList[i] -> getName().equals(name)){
-                productList[i] -> setQuantity(quantity);
-            }
-        }   
-    }
-    bool Machine::addProduct(ProductListed* product){
-
-        if (numProd < MAX_PRODUCT){
-            productList[numProd] = product;
-            numProd++;
-            return true;
-        } else {
-            return false; 
-        }
-    }
     
-    bool Machine::isStart(){
-        return state == START;
-    }
-    bool Machine::isSelect(){
-        return state == SELECT;
-    }
-    bool Machine::isMaking(){
-        return state == MAKING;
-    }
-    bool Machine::isWait(){
-        return state == WAIT;
-    }
-    bool Machine::isSelfTest(){
-        return state == SELFTEST;
-    }
-    bool Machine::isAssistance(){
-        return state == ASSISTANCE;
-    }
+bool Machine::addCatalog(Catalog* catalog){
+    this-> catalog = catalog;
+}
+Catalog* Machine::getCatalog(){
+    return catalog;
+}
+bool Machine::isStart(){
+    return state == START;
+}
+bool Machine::isSelect(){
+    return state == SELECT;
+}
+bool Machine::isMaking(){
+    return state == MAKING;
+}
+bool Machine::isWait(){
+    return state == WAIT;
+}
+bool Machine::isSelfTest(){
+    return state == SELFTEST;
+}
+bool Machine::isAssistance(){
+    return state == ASSISTANCE;
+}
 
-    void Machine::setStart(){
-        state = START;
-    }
-    void Machine::setSelect(){
-        state = SELECT;
-    }
-    void Machine::setMaking(){
-        state = MAKING;
-    }
-    void Machine::setWait(){
-        state = WAIT;
-    }
-    void Machine::setSelfTest(){
-        state = SELFTEST;
-    }
-    void Machine::setAssistance(){
-        state = ASSISTANCE;
-    }
+void Machine::setStart(){
+    state = START;
+}
+void Machine::setSelect(){
+    state = SELECT;
+}
+void Machine::setMaking(){
+    state = MAKING;
+}
+void Machine::setWait(){
+    state = WAIT;
+}
+void Machine::setSelfTest(){
+    state = SELFTEST;
+}
+void Machine::setAssistance(){
+    state = ASSISTANCE;
+}
+void Machine::setErrorRefill(){
+    alert = REFILL;
+}
+void Machine::setErrorNone(){
+    alert = NONE;
+}
+void Machine::setTemperatureAlert(){
+    alert = TEMPERATURE;
+}
+bool Machine::isErrorRefill(){
+    return alert == REFILL;
+}
+bool Machine::isErrorNone(){
+    return alert == NONE;
+}
+bool Machine::isTemperatureAlert(){
+    return alert == TEMPERATURE;
+}
 
 
