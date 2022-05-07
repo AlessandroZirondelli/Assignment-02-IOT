@@ -11,11 +11,9 @@
 
  SelfTask::SelfTask(Machine* machine) {
      this -> machine = machine;
-     //this -> tempSensor = new TempSensorLM35(TMP_PIN);
-     //this -> servoMotor = new ServoMotorImpl(SERVO_PIN);
      this ->tempSensor = this->machine->getManagerSensonrs()->getTemp();
      this ->servoMotor = this ->machine->getManagerActuators()->getServo();
-     this ->servoMotor ->on();
+     //this ->servoMotor ->on();
      //this -> display = new Display();
      this -> state = IDLE;
      this -> time = 0;
@@ -29,7 +27,7 @@
             Serial.println((curr-this->time)/1000);
             if(this->machine->isStart()){
                 Serial.print("sono dentro");
-                 if( ((curr-this->time)/1000) >= TCHECK){ // if TCHECK time is passed 
+                 if( ((curr-this->time)/1000) >= T_CHECK){ // if TCHECK time is passed 
                     this->servoMotor->setPosition(0);
                     this->machine->setSelfTest();
                     this->state = SIMULATION;
