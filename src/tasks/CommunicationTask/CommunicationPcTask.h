@@ -12,7 +12,7 @@ public:
     void tick();
 
 private:
-    enum{UPDATE,CHECK,COMMUNNICATION}state;
+    enum{UPDATE,CHECK,COMMUNICATION}state;
     Machine* machineCoffee;
 };
 #endif

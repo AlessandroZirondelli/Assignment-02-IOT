@@ -1,10 +1,12 @@
 #include "CommunicationPcTask.h"
-
+#include "MsgService.h"
 CommunicationPcTask::CommunicationPcTask(Machine* machine) : machineCoffee(machine){
     state = UPDATE;
+    MsgService.init();
 
 }
 void CommunicationPcTask::tick(){
+    int qtnDisponibilty = 0;
     switch (state){
         case UPDATE:
             
@@ -12,17 +14,30 @@ void CommunicationPcTask::tick(){
             state = CHECK;
             break;
         case CHECK:
-            int qtnDisponibilty = machineCoffee -> getCatalog()->getTotalDisponibility();
+            qtnDisponibilty = machineCoffee -> getCatalog()->getTotalDisponibility();
             if(qtnDisponibilty == 0){
                 machineCoffee ->setErrorRefill();
-                state = COMMUNNICATION;
+                state = COMMUNICATION;
             }
             break;  
-        case COMMUNNICATION:
+        case COMMUNICATION:
+            Serial.print("Comunicazione");
+            if (MsgService.isMsgAvailable()) {
+                Msg* msg = MsgService.receiveMsg();    
+                if (msg->getContent() == "refilled"){
+                  //  machineCoffee
+                    //MsgService.sendMsg("pong");
+                }
+                if (msg->getContent() == "unbroken"){
+                    
+                    //MsgService.sendMsg("pong");
+                }
             
+            
+                delete msg;
+            }
             break;
-        default:
-            break;
+       
         }
 }
 

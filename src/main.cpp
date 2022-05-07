@@ -34,6 +34,7 @@ void setup() {
   taskSelfTest->init(5000); // periodo selftest,
   sched->addTask(taskSelfTest);
 
+
 }
 
 void loop() {
