@@ -8,7 +8,7 @@
 ManagerActuatorsImpl::ManagerActuatorsImpl(){
   this->servo = new ServoMotorImpl(SERVO_PIN);
   //this->display = new Display();
-  //this -> sonar = new Sonar();
+  this -> sonar = new Sonar(ECHO_PIN,TRIG_PIN,MAX_TIME);
 }
 
 

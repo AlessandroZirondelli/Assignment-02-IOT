@@ -31,7 +31,7 @@ void setup() {
 
 
   Task* taskSelfTest = new SelfTask(mac);
-  taskSelfTest->init(2000); // periodo selftest,
+  taskSelfTest->init(500); // periodo selftest,
   sched->addTask(taskSelfTest);
 
 }
