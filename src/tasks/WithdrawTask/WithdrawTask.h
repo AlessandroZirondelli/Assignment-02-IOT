@@ -18,5 +18,6 @@ private:
     Machine * machine;
     ServoMotor * servo;
     Sonar * sonar;
+    unsigned long int time;
 };
 #endif
