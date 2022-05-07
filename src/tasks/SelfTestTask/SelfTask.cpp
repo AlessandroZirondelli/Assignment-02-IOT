@@ -70,6 +70,7 @@
             //print on display LCD "Assistance required";
             //this->display->print("Assistance required");
             this->machine->setAssistance();
+            this->machine->setTemperatureAlert();
             this->state = IDLE;
             Serial.println("Assistance required");
             break;

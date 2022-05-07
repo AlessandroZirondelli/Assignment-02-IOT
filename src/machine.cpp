@@ -8,6 +8,7 @@ Machine::Machine(){
     this->catalog = new Catalog();
     this->mngActuators = new ManagerActuatorsImpl();
     this->mngSensors = new ManagerSensorsImpl();
+    alert = NONE;
 }
 void Machine::init(){
     /*metterer nel main
