@@ -7,32 +7,44 @@
 
  WithdrawTask::WithdrawTask(Machine* machine) {
      this -> machine = machine;
-     this -> sonar = new Sonar(ECHO_PIN,TRIG_PIN,10000);
-     this -> servo = new ServoMotorImpl(SERVO_PIN);
-     this -> servo -> on();
+     this -> sonar = this->machine->getManagerActuators()->getSonar();
+     this -> servo = this->machine->getManagerActuators()->getServo();
+     this -> state = IDLE;
+     //this -> time = 0;
+     
  };
 
  void WithdrawTask::tick(){
      switch (state){
          case IDLE: {
+             
              if(this->machine->isWait()){
+                 Serial.println("Mi attivo");
                  this->state = WAIT;
-                 break;
+                 this->time = millis();
              }
+             break;
          }
 
          case WAIT: {
              float distance = this -> sonar -> getDistance();
-             if(distance < 40 ){
+             Serial.print("Distanza");
+             Serial.println(distance);
+             unsigned long int curr = millis();
+             unsigned long int difference =(curr-time)/1000;
+             Serial.println(difference);
+             if(distance < DISTANCE  ||  difference >= 5 ){
                  this -> state = REMOVAL;
              }
             break;
          }
 
          case REMOVAL: {
+             Serial.print("Sono in removal");
              this->servo->setPosition(0);
              this -> state = IDLE;
              this ->machine->setStart();
+             break;
          }
      }
  };

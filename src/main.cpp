@@ -3,7 +3,9 @@
 #include "scheduler.h"
 #include "config.h"
 #include "./tasks/SelfTestTask/SelfTask.h"
+#include "./tasks/WithdrawTask/WithdrawTask.h"
 #include "./sensors/pir/pir.h"
+#include "./tasks/StartTask/StartTask.h"
 
 
 Scheduler* sched;
@@ -31,9 +33,19 @@ void setup() {
 
 
   Task* taskSelfTest = new SelfTask(mac);
-  taskSelfTest->init(2000); // periodo selftest,
-  sched->addTask(taskSelfTest);
+  Task* taskWithdraw = new WithdrawTask(mac);
+  Task* taskStartTask = new StartTask(mac);
+  //taskSelfTest->init(500); // periodo selftest,
+  //sched->addTask(taskSelfTest);
+  //taskWithdraw->init(4000);
+  //sched->addTask(taskWithdraw);
 
+  //mac->setWait();
+  //sched->addTask(taskWithdraw);
+
+  taskStartTask->init(2000);
+  sched->addTask(taskStartTask);
+  
 }
 
 void loop() {

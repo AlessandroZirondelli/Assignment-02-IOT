@@ -1,9 +1,14 @@
 #include "machine.h"
 #include <Arduino.h>
+#include "./actuators/ManagerActuatorsImpl.h"
+#include "./sensors/ManagerSensorsImpl.h"
 
 Machine::Machine(){
     state = START;
     this->catalog = new Catalog();
+    this->mngActuators = new ManagerActuatorsImpl();
+    this->mngSensors = new ManagerSensorsImpl();
+    alert = NONE;
 }
 void Machine::init(){
     /*metterer nel main
@@ -75,6 +80,14 @@ bool Machine::isErrorNone(){
 }
 bool Machine::isTemperatureAlert(){
     return alert == TEMPERATURE;
+}
+
+ManagerActuators* Machine::getManagerActuators(){
+    return this->mngActuators;
+}
+
+ManagerSensors* Machine::getManagerSensonrs(){
+    return this->mngSensors;
 }
 
 

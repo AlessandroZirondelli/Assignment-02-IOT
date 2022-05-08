@@ -3,6 +3,8 @@
 #include "Product.h"
 #include "ProductListed.h"
 #include "catalog.h"
+#include "./sensors/ManagerSensors.h"
+#include "./actuators/ManagerActuators.h"
 
 
 class Machine {
@@ -33,12 +35,15 @@ public:
     bool isErrorRefill();
     bool isErrorNone();
     bool isTemperatureAlert();
+    ManagerSensors* getManagerSensonrs();
+    ManagerActuators* getManagerActuators();
 
 private:
     enum { START, SELECT, MAKING, WAIT,SELFTEST, ASSISTANCE } state;
     enum {NONE, REFILL,TEMPERATURE} alert; 
     Catalog* catalog;
-
+    ManagerSensors* mngSensors;
+    ManagerActuators* mngActuators;
 
 };
 

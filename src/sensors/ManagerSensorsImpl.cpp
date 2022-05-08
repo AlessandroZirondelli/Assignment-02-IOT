@@ -5,7 +5,8 @@
 
 ManagerSensorsImpl::ManagerSensorsImpl(){
   temp = new TempSensorLM35(TMP_PIN);
-  //pir = new Pir();
+  pir = new Pir(PIR_PIN);
+  pir->calibrate();
   //pot = new Potentiometer(POT_PIN);
   //buttonUp
   //buttonDown
