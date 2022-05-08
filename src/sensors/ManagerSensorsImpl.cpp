@@ -1,5 +1,6 @@
 #include "ManagerSensorsImpl.h"
 #include "temp/TempSensorLM35.h"
+#include "./sensors/button/ButtonImpl.h"
 #include "config.h"
 #include "Arduino.h"
 
@@ -8,9 +9,10 @@ ManagerSensorsImpl::ManagerSensorsImpl(){
   pir = new Pir(PIR_PIN);
   pir->calibrate();
   //pot = new Potentiometer(POT_PIN);
-  //buttonUp
-  //buttonDown
-  //buttonMake
+
+  buttonUp = new ButtonImpl(BTNUP_PIN);
+  buttonDown = new ButtonImpl(BTNDOWN_PIN);
+  buttonMake = new ButtonImpl(BTNMAKE_PIN);
 } 
 
 TempSensor* ManagerSensorsImpl ::  getTemp(){

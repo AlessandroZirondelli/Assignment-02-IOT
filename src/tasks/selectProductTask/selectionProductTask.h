@@ -21,6 +21,9 @@ private:
     Button* pButtonMAKE; 
     Display* pDisplay;
     ProductListed* pProduct;
+    
+    unsigned long int timeStart;
+    unsigned int currentPos;
 
 public:
     selectionProductTask(Machine* pMachine);

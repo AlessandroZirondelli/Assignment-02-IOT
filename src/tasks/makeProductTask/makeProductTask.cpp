@@ -7,7 +7,6 @@
 #include "./actuators/servo/servo_motor_impl.h"
 #include "config.h"
 
-#define TMAKING 10 //sec
 #define GAPROTATION 5
 
 #define MSG_START "Making a "
@@ -17,18 +16,17 @@ makeProductTask::makeProductTask(Machine* pMachine) {
     this -> state = IDLE;
     this -> pMachine = pMachine;
     this-> pProduct = pProduct;
-    this->pServoMotor = new ServoMotorImpl(SERVO_PIN);
-    pDisplay->setup();
+    
+    this ->pServoMotor = this ->pMachine->getManagerActuators()->getServo();
+    this->pDisplay = this->pMachine->getManagerActuators()->getDisplay();
 
-    this -> pDisplay = new Display(0x27,16,2);
     
 };
 
 void makeProductTask::tick() {
     switch (state){
         case IDLE: {
-            if(this->pMachine->isSelect()){
-                this->pMachine->setMaking();
+            if(this->pMachine->isMaking()){
                 this->state = START;
             }
             break;
@@ -45,7 +43,7 @@ void makeProductTask::tick() {
 
             unsigned long timeStartMake=0;
             unsigned long currentTimeMake = millis(); 
-            if (currentTimeMake - timeStartMake > TMAKING) {
+            if (currentTimeMake - timeStartMake > T_MAKING) {
 
                 //motore arriva a 180 fino a tempo tmaking
 
