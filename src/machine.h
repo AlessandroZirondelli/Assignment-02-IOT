@@ -36,7 +36,7 @@ public:
     bool isErrorNone();
     bool isTemperatureAlert();
 
-    void addNumSelfTest();
+    void incNumSelfTest();
     int getNumSelfTest();
     ManagerSensors* getManagerSensonrs();
     ManagerActuators* getManagerActuators();
