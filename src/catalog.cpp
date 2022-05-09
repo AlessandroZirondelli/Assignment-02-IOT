@@ -14,6 +14,9 @@ int Catalog::getQtnProduct(String name){
         }
         return 0;
 }
+ProductListed* Catalog::getProduct(){
+    return *productList;
+}
 void Catalog::setQtnProduct(String name, int quantity){
         for(int i = 0; i<numProd;i++){
             if(productList[i] -> getName().equals(name)){

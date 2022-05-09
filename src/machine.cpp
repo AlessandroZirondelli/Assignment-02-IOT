@@ -8,7 +8,9 @@ Machine::Machine(){
     this->catalog = new Catalog();
     this->mngActuators = new ManagerActuatorsImpl();
     this->mngSensors = new ManagerSensorsImpl();
+    this->numSelfTest = 0;
     alert = NONE;
+    
 }
 void Machine::init(){
     /*metterer nel main
@@ -22,6 +24,7 @@ void Machine::init(){
     
 bool Machine::addCatalog(Catalog* catalog){
     this-> catalog = catalog;
+    return true;
 }
 Catalog* Machine::getCatalog(){
     return catalog;
@@ -89,5 +92,10 @@ ManagerActuators* Machine::getManagerActuators(){
 ManagerSensors* Machine::getManagerSensonrs(){
     return this->mngSensors;
 }
-
+void Machine::incNumSelfTest(){
+    this->numSelfTest++;
+}
+int Machine::getNumSelfTest(){
+    return this->numSelfTest;
+}
 

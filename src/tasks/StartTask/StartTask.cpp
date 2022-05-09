@@ -3,8 +3,8 @@
 #include "config.h"
 #include "Arduino.h"
 
-#include "./avr/sleep.h"
-#include "./avr/power.h"
+#include <avr/sleep.h>
+#include <avr/power.h>
 
  StartTask::StartTask(Machine* machine) {
      this -> machine = machine;

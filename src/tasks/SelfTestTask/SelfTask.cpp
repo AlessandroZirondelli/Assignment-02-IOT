@@ -49,6 +49,7 @@
             }
             Serial.print("Angolo ");
             Serial.println(currentAngle);
+            this -> machine -> incNumSelfTest();
             break;
         }
 
