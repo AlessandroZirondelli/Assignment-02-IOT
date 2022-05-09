@@ -49,13 +49,18 @@ void CommunicationPcTask::tick(){
             
             //qtnDisponibilty = machineCoffee -> getCatalog()->getTotalDisponibility();
             qtnDisponibilty = 1;
-            if(qtnDisponibilty == 0){
-                //machineCoffee ->setErrorRefill();
-                
-                this->state = COMMUNICATION;
-            }else{
+            if(machineCoffee->isErrorNone()){
+                MsgService.sendMsg("Alert None");
                 this->state = UPDATE;
+            }if(machineCoffee->isErrorRefill()){
+                MsgService.sendMsg("Alert Refill");
+                this->state = COMMUNICATION;
+            }if(machineCoffee->isTemperatureAlert()){
+                MsgService.sendMsg("Alert Temperature");
+                this->state = COMMUNICATION;
             }
+            
+            
              //Serial.println("Check");
             break;  
         case COMMUNICATION:
