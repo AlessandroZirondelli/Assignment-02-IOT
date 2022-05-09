@@ -36,7 +36,7 @@ void CommunicationPcTask::tick(){
             }
               MsgService.sendMsg("SelfTest " + String(machineCoffee->getNumSelfTest())); 
               // Serial.println("SelfTest " + String(machineCoffee->getNumSelfTest()));
-            machineCoffee->addNumSelfTest();
+            machineCoffee->incNumSelfTest();
           //  delete msg;
         
 
