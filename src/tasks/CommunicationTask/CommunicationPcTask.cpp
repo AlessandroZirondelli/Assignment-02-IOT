@@ -64,21 +64,26 @@ void CommunicationPcTask::tick(){
              //Serial.println("Check");
             break;  
         case COMMUNICATION:
-         /*   Serial.print("Comunicazione");
+           
             if (MsgService.isMsgAvailable()) {
                 Msg* msg = MsgService.receiveMsg();    
                 if (msg->getContent() == "refilled"){
-                  //  machineCoffee
+                    machineCoffee->setErrorNone();
+                    machineCoffee->getCatalog()->setQtnProduct("Chocolate",MAX_QTN_CHOCOLATE);
+                    machineCoffee->getCatalog()->setQtnProduct("Coffee",MAX_QTN_COFFEE);
+                    machineCoffee->getCatalog()->setQtnProduct("Tea",MAX_QTN_TEA);
+                    machineCoffee->setStart();
                     //MsgService.sendMsg("pong");
                 }
                 if (msg->getContent() == "unbroken"){
-                    
+                     machineCoffee->setErrorNone();
+                    machineCoffee->setStart();
                     //MsgService.sendMsg("pong");
                 }
             
             
                 delete msg;
-            }*/
+            }
             // Serial.println("COMMUNICATION");
             this->state = UPDATE;
             break;
