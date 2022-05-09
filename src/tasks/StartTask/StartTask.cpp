@@ -59,6 +59,7 @@
         case ERROR: {
             this->machine->setErrorRefill();
             this->machine->setAssistance();
+            this->state = IDLE;
             break;
         }
 
