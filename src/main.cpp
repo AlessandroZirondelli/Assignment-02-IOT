@@ -47,7 +47,7 @@ void setup() {
 
   //taskStartTask->init(2000);
   //sched->addTask(taskStartTask);
-  taskCommunication->init(500);
+  taskCommunication->init(1000);
   sched->addTask(taskCommunication);
 
 

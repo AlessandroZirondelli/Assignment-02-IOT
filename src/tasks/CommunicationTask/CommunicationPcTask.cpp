@@ -7,34 +7,43 @@ CommunicationPcTask::CommunicationPcTask(Machine* machine) : machineCoffee(machi
 }
 void CommunicationPcTask::tick(){
     int qtnDisponibilty = 0;
+    
     String num = String(0);
-    unsigned long old = millis();
-    switch(state){
+    int i =0;
+    String* stringa[3] = {new String("Chocolate"),new String("Tea"), new String("Coffee")};
+    Catalog* catalog1 = machineCoffee->getCatalog();
+
+    switch(this->state){
         case UPDATE:
            // Msg* msg = MsgService.receiveMsg(); 
             if(machineCoffee->isAssistance()){
-                MsgService.sendMsg("State Assistance"); 
+                MsgService.sendMsg("State Assistance");
             }else if(machineCoffee->isStart()){
-                MsgService.sendMsg("State Idle"); 
+               MsgService.sendMsg("State Idle"); 
             }else{
                 MsgService.sendMsg("State Working"); 
+                 
             }
             //char* stringa[3] = {"Chocolate","Tea","Coffee"};
-            String* stringa[3] = {new String("Chocolate"),new String("Tea"), new String("Coffee")};
-            Catalog* catalog1 = machineCoffee->getCatalog();
+         
 
             for(int i = 0; i<3; i++){
                 int qtn = catalog1->getQtnProduct(*stringa[i]);
                 num = String(qtn);
                 
                 MsgService.sendMsg(*stringa[i] + " " + num ); 
+                 //Serial.println(*stringa[i] + " " + num);
             }
               MsgService.sendMsg("SelfTest " + String(machineCoffee->getNumSelfTest())); 
-           machineCoffee->addNumSelfTest();
+              // Serial.println("SelfTest " + String(machineCoffee->getNumSelfTest()));
+            machineCoffee->addNumSelfTest();
           //  delete msg;
-           
-         
-            state = CHECK;
+        
+
+       
+       
+            this->state = CHECK;
+            
             break;
         case CHECK:
             
@@ -43,11 +52,11 @@ void CommunicationPcTask::tick(){
             if(qtnDisponibilty == 0){
                 //machineCoffee ->setErrorRefill();
                 
-                state = COMMUNICATION;
+                this->state = COMMUNICATION;
             }else{
-                state = UPDATE;
+                this->state = UPDATE;
             }
-             Serial.println("Check");
+             //Serial.println("Check");
             break;  
         case COMMUNICATION:
          /*   Serial.print("Comunicazione");
@@ -65,8 +74,8 @@ void CommunicationPcTask::tick(){
             
                 delete msg;
             }*/
-             Serial.println("COMMUNICATION");
-            state = UPDATE;
+            // Serial.println("COMMUNICATION");
+            this->state = UPDATE;
             break;
         
        
