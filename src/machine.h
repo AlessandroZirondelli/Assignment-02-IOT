@@ -35,6 +35,9 @@ public:
     bool isErrorRefill();
     bool isErrorNone();
     bool isTemperatureAlert();
+
+    void addNumSelfTest();
+    int getNumSelfTest();
     ManagerSensors* getManagerSensonrs();
     ManagerActuators* getManagerActuators();
 
@@ -44,6 +47,7 @@ private:
     Catalog* catalog;
     ManagerSensors* mngSensors;
     ManagerActuators* mngActuators;
+    int numSelfTest;
 
 };
 
