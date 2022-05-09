@@ -92,7 +92,7 @@ ManagerActuators* Machine::getManagerActuators(){
 ManagerSensors* Machine::getManagerSensonrs(){
     return this->mngSensors;
 }
-void Machine::addNumSelfTest(){
+void Machine::incNumSelfTest(){
     this->numSelfTest++;
 }
 int Machine::getNumSelfTest(){
