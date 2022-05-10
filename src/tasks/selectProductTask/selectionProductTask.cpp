@@ -9,7 +9,6 @@
 selectionProductTask::selectionProductTask(Machine* pMachine) {
     this -> state = IDLE;
     this -> pMachine = pMachine;
-    //this-> pProduct = new ProductListed();
     this -> pPotSugar = this->pMachine->getManagerSensonrs()->getPot();
     this->pButtonUP = this->pMachine->getManagerSensonrs()->getButtonUp();
     this->pButtonDOWN = this->pMachine->getManagerSensonrs()->getButtonDown();
@@ -52,6 +51,7 @@ void selectionProductTask::tick() { //this is the task where you select the prod
             }   
             else if (this->pButtonMAKE->isPressed()){ // if button make is pressed
                 this->pMachine->setMaking(); //
+                this->pMachine->setSelectedProduct(currentPos);
                 this->state = IDLE;
                 break; 
             }
