@@ -15,7 +15,7 @@ void Display::clear() {
     lcd.clear();
 }
 
-void Display::selectLine(int row, int column) {
+void Display::setCursor(int row, int column) {
     this->column = column;
     this->row = row;
 }

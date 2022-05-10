@@ -7,6 +7,8 @@ public:
   Potentiometer(int pin);
   
   float getValue();
+  
+  int getPercentage();
 
 private:
   int pin;

@@ -8,7 +8,7 @@ ManagerSensorsImpl::ManagerSensorsImpl(){
   temp = new TempSensorLM35(TMP_PIN);
   pir = new Pir(PIR_PIN);
   pir->calibrate();
-  //pot = new Potentiometer(POT_PIN);
+  pot = new Potentiometer(POT_PIN);
 
   buttonUp = new ButtonImpl(BTNUP_PIN);
   buttonDown = new ButtonImpl(BTNDOWN_PIN);

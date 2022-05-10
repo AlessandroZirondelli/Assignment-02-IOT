@@ -10,8 +10,9 @@ ManagerActuatorsImpl::ManagerActuatorsImpl(){
   this -> sonar = new Sonar(ECHO_PIN,TRIG_PIN,MAX_TIME);
   this -> servo ->on();
 
-  this->display = new Display(0x27, 16, 2);
+  this->display = new Display(0x27, 20, 4);
   this->display ->setup();
+  this->display->setCursor(2,1);
 }
 
 

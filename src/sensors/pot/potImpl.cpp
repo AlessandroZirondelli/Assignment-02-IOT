@@ -9,3 +9,7 @@ float Potentiometer::getValue(){
   float val = analogRead(pin);
   return val;
 }
+
+int Potentiometer::getPercentage() {
+    return map(this->getValue(), 0, 1023, 0, 100);
+}

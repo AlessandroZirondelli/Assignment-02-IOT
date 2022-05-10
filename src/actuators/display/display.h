@@ -1,8 +1,8 @@
 #ifndef __DISPLAY__
 #define __DISPLAY__
 
-#define WIDTH  16
-#define HEIGHT  2
+#define WIDTH  20
+#define HEIGHT  4
 
 #include "LiquidCrystal_I2C.h"
 
@@ -19,7 +19,7 @@ public:
     void setup();
     void clear();
     void print(String message);
-    void selectLine(int row, int column);
+    void setCursor(int row, int column);
     
 };
 

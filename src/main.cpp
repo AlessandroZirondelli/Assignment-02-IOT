@@ -4,15 +4,14 @@
 #include "config.h"
 #include "./tasks/SelfTestTask/SelfTask.h"
 #include "./tasks/WithdrawTask/WithdrawTask.h"
-#include "./sensors/pir/pir.h"
 #include "./tasks/StartTask/StartTask.h"
 #include "./tasks/CommunicationTask/CommunicationPcTask.h"
- Pir* pir;
+#include "./tasks/selectProductTask/selectionProductTask.h"
+#include "./tasks/makeProductTask/makeProductTask.h"
+
 Scheduler* sched;
 
 void setup() {
-  //Pir* pir = new Pir(PIT_PIN);
-  //pir->calibrate(); 
   sched = new Scheduler();
   sched -> init(50);
 
@@ -37,24 +36,34 @@ void setup() {
   Task* taskWithdraw = new WithdrawTask(mac);
   Task* taskStartTask = new StartTask(mac);
   Task* taskCommunication = new CommunicationPcTask(mac);
+  Task* taskSelect = new selectionProductTask(mac);
+  Task* taskMakeProduct = new makeProductTask(mac);
+  
   //taskSelfTest->init(500); // periodo selftest,
   //sched->addTask(taskSelfTest);
+
   //taskWithdraw->init(4000);
   //sched->addTask(taskWithdraw);
 
   //mac->setWait();
   //sched->addTask(taskWithdraw);
 
-  //taskStartTask->init(2000);
+  taskStartTask->init(2000);
   //sched->addTask(taskStartTask);
+  
   taskCommunication->init(1000);
-  sched->addTask(taskCommunication);
+  //sched->addTask(taskCommunication);
 
+  taskSelect->init(1000);
+  //sched->addTask(taskSelect);
+
+  taskMakeProduct->init(1000);
+  sched->addTask(taskMakeProduct);
 
 }
 
 void loop() {
 
-  sched->schedule();
+ sched->schedule();
    
 }

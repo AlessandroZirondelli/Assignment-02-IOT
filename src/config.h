@@ -1,10 +1,10 @@
 #ifndef __CONFIG__
 #define __CONFIG__
 
-#define BTNUP_PIN 4
-#define BTNDOWN_PIN 6
-#define BTNMAKE_PIN 8
-
+#define BTNUP_PIN 3
+#define BTNDOWN_PIN 5
+#define BTNMAKE_PIN 6
+#define POT_PIN A0
 #define TMP_PIN A3
 #define SERVO_PIN 4
 #define ECHO_PIN 7
@@ -19,6 +19,6 @@
 #define DISTANCE 0.40 //meters
 #define T_IDLE 60 //seconds
 #define T_MAKING 10 //sec
-#define T_BUTTON 5
+#define T_BUTTON 5 //seconds
 
 #endif
