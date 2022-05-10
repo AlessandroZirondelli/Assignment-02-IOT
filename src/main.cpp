@@ -62,6 +62,9 @@ void setup() {
   taskCommunication->init(100);
   sched->addTask(taskCommunication);
 
+  taskCommunication->init(500);
+  sched->addTask(taskCommunication);
+
 }
 
 void loop() {

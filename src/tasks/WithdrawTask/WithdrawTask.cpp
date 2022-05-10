@@ -10,7 +10,6 @@
      this -> sonar = this->machine->getManagerActuators()->getSonar();
      this -> servo = this->machine->getManagerActuators()->getServo();
      this -> state = IDLE;
-     //this -> time = 0;
      
  };
 
@@ -19,7 +18,6 @@
          case IDLE: {
              
              if(this->machine->isWait()){
-                 //Serial.println("Mi attivo");
                  this->state = WAIT;
                  this->time = millis();
              }
@@ -28,19 +26,15 @@
 
          case WAIT: {
              float distance = this -> sonar -> getDistance();
-             //Serial.print("Distanza");
-             //Serial.println(distance);
              unsigned long int curr = millis();
              unsigned long int difference =(curr-time)/1000;
-             //Serial.println(difference);
-             if(distance < DISTANCE  ||  difference >= 5 ){
+             if(distance < DISTANCE  ||  difference >= T_TIMEOUT ){
                  this -> state = REMOVAL;
              }
             break;
          }
 
          case REMOVAL: {
-             //Serial.print("Sono in removal");
              this->servo->setPosition(0);
              this -> state = IDLE;
              this ->machine->setStart();

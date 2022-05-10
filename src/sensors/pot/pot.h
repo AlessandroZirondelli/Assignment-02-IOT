@@ -6,8 +6,8 @@ class Potentiometer {
 public: 
   Potentiometer(int pin);
 
-  float getValue(); // Ritorna il valore del potenziometro
-  int getPercentage();
+  float getValue();  
+  int getPercentage(); 
 
 private:
   int pin;

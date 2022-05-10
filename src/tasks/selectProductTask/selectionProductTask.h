@@ -25,6 +25,9 @@ private:
     unsigned long int timeStart;
     unsigned int currentPos;
 
+    void nextSelection(); //next selection when user press on Button down
+    void prevSelection(); //prev selection when user press on Button up
+
 public:
     selectionProductTask(Machine* pMachine);
     void tick();

@@ -6,10 +6,10 @@ Potentiometer::Potentiometer(int pin){
 } 
   
 float Potentiometer::getValue(){
-  float val = analogRead(pin); // Ritorna il valore del potenziometro
+  float val = analogRead(pin); //return of the value of the potentiometer
   return val;
 }
 
-int Potentiometer::getPercentage() {
+int Potentiometer::getPercentage() { //return the percentage of sugar
     return map(this->getValue(), 0, 1023, 0, 100);
 }

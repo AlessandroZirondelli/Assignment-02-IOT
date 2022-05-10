@@ -20,7 +20,7 @@ makeProductTask::makeProductTask(Machine* pMachine) {
 
 };
 
-void makeProductTask::tick() {
+void makeProductTask::tick() { //this is the task where you make the product 
     switch (state){
         case IDLE: { //initialization
             if (this->pMachine->isMaking()){

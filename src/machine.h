@@ -45,6 +45,10 @@ public:
     int getNumSelfTest();   //Ritorna il numero di selftest eseguiti
     ManagerSensors* getManagerSensonrs();  // Manager dei sensori
     ManagerActuators* getManagerActuators(); // Manager degli attuatori
+    
+
+    void setSelectedProduct(int val);
+    int getSelectedProduct(); 
 
 private:
     enum { START, SELECT, MAKING, WAIT,SELFTEST, ASSISTANCE } state; // Stati della macchina
@@ -53,7 +57,7 @@ private:
     ManagerSensors* mngSensors;
     ManagerActuators* mngActuators;
     int numSelfTest; // Contatore che tiene il conto di quanti selfTest sono stati eseguiti
-
+    int selectedProduct; //identify which product is selected
 };
 
 #endif

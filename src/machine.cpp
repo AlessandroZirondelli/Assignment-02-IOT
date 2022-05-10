@@ -10,6 +10,7 @@ Machine::Machine(){
     this->mngSensors = new ManagerSensorsImpl();
     this->numSelfTest = 0;
     alert = NONE;
+    selectedProduct = -1; // if no product is selected , it's set to -1. Also its value is position of product in list of catalog.
     
 }
 
@@ -91,3 +92,10 @@ int Machine::getNumSelfTest(){
     return this->numSelfTest;
 }
 
+int Machine::getSelectedProduct(){
+    return this->selectedProduct;
+}
+
+void Machine::setSelectedProduct(int val){
+    this->selectedProduct = val;
+}
