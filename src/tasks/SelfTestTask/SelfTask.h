@@ -19,7 +19,7 @@ private:
     ServoMotor * servoMotor;
     Machine * machine;
     Display * display;
-    unsigned long time; // time used to counting Tcheck. It used for frequency
+    unsigned long time; // time used to counting Tcheck. It used for frequency TCHECK
 
 };
 #endif

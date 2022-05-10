@@ -4,18 +4,17 @@
 #include "./sensors/temp/TempSensorLM35.h"
 #include "./actuators/servo/servo_motor_impl.h"
 
-#define TEMPMIN 17 // Celsius degrees 
-#define TEMPMAX 24 // Celsius degrees 
-#define GAPROTATION 30
 
+
+#define GAPROTATION 30
 
  SelfTask::SelfTask(Machine* machine) {
      this -> machine = machine;
      this ->tempSensor = this->machine->getManagerSensonrs()->getTemp();
      this ->servoMotor = this ->machine->getManagerActuators()->getServo();
-     //this -> display = new Display();
+     this -> display = this -> machine->getManagerActuators()->getDisplay();
      this -> state = IDLE;
-     this -> time = 0;
+     this -> time = millis();
  };
 
  void SelfTask::tick(){
@@ -30,19 +29,17 @@
                     this->machine->setSelfTest();
                     this->state = SIMULATION;
                     this->time = millis();
-                    //display.print("Sono in idle");
-                    Serial.println("Sono in idle"); 
                  }
             }  
             break;
         }
 
-        case SIMULATION: {
+        case SIMULATION: {//move servo motor
             int currentAngle = this->servoMotor->getAnglePosition();
             if(currentAngle < 180){
                 this->servoMotor->setPosition(currentAngle+GAPROTATION);
             } else if(currentAngle >= 180){
-                this->servoMotor->setPosition(0);
+                this->servoMotor->setPosition(0); //reset position 
                 this->state = CHECK;
             }
             this -> machine -> incNumSelfTest();
@@ -51,9 +48,9 @@
 
         case CHECK: {
             float temp = tempSensor->getTemperature();
-            if( temp > TEMPMAX || temp < TEMPMIN){
+            if( temp > TEMPMAX || temp < TEMPMIN){ //temperature not in range
                 this->state = ERROR;
-            } else {
+            } else { //temperature in range
                 this->machine->setStart();
                 this->state = IDLE;
             }
@@ -62,11 +59,10 @@
         
         case ERROR: {
             //print on display LCD "Assistance required";
-            //this->display->print("Assistance required");
+            this->display->print("Assistance required");
             this->machine->setAssistance();
             this->machine->setTemperatureAlert();
             this->state = IDLE;
-            Serial.println("Assistance required");
             break;
         }
     }
