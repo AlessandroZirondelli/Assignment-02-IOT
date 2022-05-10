@@ -38,3 +38,6 @@ int Catalog::getTotalDisponibility(){
     }
     return tot;
 }
+ProductListed* Catalog::getProducts(){
+    return *productList;
+}

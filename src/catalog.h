@@ -17,7 +17,7 @@ public:
     void setQtnProduct(String name, int qtn); // Set quantity of product
     bool addProduct(ProductListed* product); //add product to catalog
     int getTotalDisponibility(); // Return the total quantity of product, do the sum of all product's quantity
-
+    ProductListed* getProducts();
 };
 
 #endif
