@@ -10,6 +10,7 @@ class StartTask : public Task{
 public: 
     StartTask(Machine* machine);
     void tick();
+    static void wakeUp();
 
 private:
     enum{INIT,IDLE,CHECK,ERROR,SLEEP} state;

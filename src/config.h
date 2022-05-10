@@ -23,4 +23,7 @@
 #define T_MAKING 10 //sec
 #define T_BUTTON 5 //seconds
 
+#define TEMPMIN 17 // Celsius degrees 
+#define TEMPMAX 24 // Celsius degrees 
+
 #endif
