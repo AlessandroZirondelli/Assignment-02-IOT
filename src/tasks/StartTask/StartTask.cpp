@@ -10,16 +10,19 @@
      this -> machine = machine;
      this -> pir = this->machine->getManagerSensonrs()->getPir();
      this->state = INIT;
-     //this->display = this->machine ->getManagerActuators()->getDisplay();
-     //attachInterrupt(digitalPinToInterrupt(PIR_PIN),wakeUp,RISING); TO INSERT
+     this->display = this->machine ->getManagerActuators()->getDisplay();
+     attachInterrupt(digitalPinToInterrupt(PIR_PIN),wakeUp,RISING); 
  };
+
+ void StartTask::wakeUp(){
+
+ }
 
  void StartTask::tick(){
      switch(state){
         case INIT: {
             if(this->machine->isStart()){
-                Serial.println("Welcome"); 
-                //display->print("Welcome");
+                display->print("Welcome");
                 this->state = IDLE;
             }
             break; 
@@ -27,8 +30,7 @@
 
         case IDLE: {
             if(this->machine->isStart()){
-                Serial.println("Ready");
-                //display->print("Ready");
+                display->print("Ready");
                 this->state = CHECK;
                 this->time = millis();
             }
@@ -38,42 +40,38 @@
         case CHECK: {
             if(this->machine->getCatalog()->getTotalDisponibility()==0){ //if there aren't any products
                 this->state=ERROR;
-                //Serial.println("Prodotti terminati");
                 break;
             }
             if(!(this->pir->isDetected())){ //if user is not detected by pir
                 unsigned long current = millis();
-                if(((current-time)/1000) > T_TIMEOUT){ //if time timeout passed , go to sleep mode
+                if(((current-time)/1000) > T_IDLE){ //if time timeout passed , go to sleep mode
                     this->state = SLEEP;
                     break;
                 }
-                Serial.println("Not detected  user");
             } else{ //if user is detected by pir
-                //this->time = millis(); //reset counting time for T_IDLE
                 this->state = IDLE;
                 this->machine->setSelect();
-                Serial.println("Detected user");
                 break;
             }
             break;
         }
 
-        case ERROR: {
+        case ERROR: { //alert error
             this->machine->setErrorRefill();
             this->machine->setAssistance();
             this->state = IDLE;
-            //this->dispplay->print("Assistance required");
+            this->display->print("Assistance required");
             break;
         }
 
         case SLEEP:{
             
-            /*set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+            set_sleep_mode(SLEEP_MODE_PWR_DOWN);
             sleep_enable();
             sleep_mode();
-            sleep_disable();*/
+            sleep_disable();
             //Serial.println("SONO IN SLEEP E DEVO DORMIRE 5 sec");
-            delay(5000);//to delete. It's only a test
+            
             this->state = IDLE;
 
         }
