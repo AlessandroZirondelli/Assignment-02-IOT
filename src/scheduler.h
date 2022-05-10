@@ -7,14 +7,14 @@
 
 class Scheduler {
   
-  int basePeriod;
+  int basePeriod; //  periodo dello scheduler
   int nTasks;
-  Task* taskList[MAX_TASKS];  
+  Task* taskList[MAX_TASKS];  //Array che contengono i task
 
 public:
   Scheduler();
   void init(int basePeriod);  
-  virtual bool addTask(Task* task);  
+  virtual bool addTask(Task* task);  //Aggiungo al task
   virtual void schedule();
 };
 

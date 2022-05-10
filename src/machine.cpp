@@ -12,14 +12,6 @@ Machine::Machine(){
     alert = NONE;
     
 }
-void Machine::init(){
-    /*metterer nel main
-    numProd = 3;
-    productList[0] = new Product("Chocolate",40);
-    productList[1] = new Product("Coffee",50);
-    productList[2] = new Product("Tea",60);
-*/
-}
 
     
 bool Machine::addCatalog(Catalog* catalog){
