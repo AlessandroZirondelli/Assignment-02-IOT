@@ -19,17 +19,19 @@ void setup() {
   Machine* mac = new Machine();
   Catalog* catalog = new Catalog();
   
+  // arary che contiene i prodotti con relativa quantità
   ProductListed* productInput[] = {new ProductListed(new Product("Chocolate"),MAX_QTN_CHOCOLATE),
                                    new ProductListed(new Product("Tea"),MAX_QTN_TEA),
                                    new ProductListed(new Product("Coffee"),MAX_QTN_COFFEE)}; 
-  int lengthInput = sizeof(productInput)/sizeof(productInput[0]);
+  int lengthInput = sizeof(productInput)/sizeof(productInput[0]); // Lunghezza array che contiene i prodotti
+ 
   for(int i = 0 ; i<lengthInput; i++){
-    bool res = catalog -> addProduct( productInput[i]);
+    bool res = catalog -> addProduct(productInput[i]); // Aggiungo i prodotti al catalogo
     if(res == false){
       Serial.print("Max product reached");
     }
   }
-  mac -> addCatalog(catalog);
+  mac -> addCatalog(catalog); // Aggiungo il catalogo all'oggetto Machine
 
 
   Task* taskSelfTest = new SelfTask(mac);
@@ -50,7 +52,6 @@ void setup() {
 
   taskStartTask->init(2000);
   //sched->addTask(taskStartTask);
-<<<<<<< HEAD
   
   taskCommunication->init(1000);
   //sched->addTask(taskCommunication);
@@ -61,11 +62,6 @@ void setup() {
   taskMakeProduct->init(1000);
   sched->addTask(taskMakeProduct);
 
-=======
-  taskCommunication->init(500);
-  sched->addTask(taskCommunication);
-
->>>>>>> master
 }
 
 void loop() {
