@@ -9,7 +9,7 @@
 selectionProductTask::selectionProductTask(Machine* pMachine) {
     this -> state = IDLE;
     this -> pMachine = pMachine;
-    this-> pProduct = new ProductListed();
+    //this-> pProduct = new ProductListed();
     this -> pPotSugar = this->pMachine->getManagerSensonrs()->getPot();
     this->pButtonUP = this->pMachine->getManagerSensonrs()->getButtonUp();
     this->pButtonDOWN = this->pMachine->getManagerSensonrs()->getButtonDown();
