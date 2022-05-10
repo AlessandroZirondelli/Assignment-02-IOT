@@ -10,7 +10,6 @@ selectionProductTask::selectionProductTask(Machine* pMachine) {
     this -> state = IDLE;
 
     this -> pMachine = pMachine;
-    this->pProduct = new ProductListed();
 
     this -> pPotSugar = this->pMachine->getManagerSensonrs()->getPot();
     this->pButtonUP = this->pMachine->getManagerSensonrs()->getButtonUp();
@@ -29,7 +28,7 @@ void selectionProductTask::tick() { //this is the task where you select the prod
         }
         
         case SELECT: { //switch from IDLE to SELECT only if any button is pressed or the time has passed
-            if(!(this->pButtonDOWN->isPressed())||(!(this->pButtonUP->isPressed()))){ 
+            if(!(this->pButtonDOWN->isPressed())&&(!(this->pButtonUP->isPressed()))){ 
                 unsigned long current = millis();
                 if(((current-timeStart)/1000) > T_BUTTON){ //if no buttons are pressed before 5 seconds
                     this->state = IDLE; 
@@ -38,11 +37,7 @@ void selectionProductTask::tick() { //this is the task where you select the prod
                 }
                 Serial.println("Not pressed button");
             } else{ //the buttons are pressed 
-                if(this->pMachine->getCatalog()->getTotalDisponibility()==0) { //if there isn't any products
-                    this->state = IDLE;
-                    this->pMachine->setAssistance();
-                    this->pMachine->isErrorRefill();
-                } else {
+                
                     
                     if(this->pButtonUP->isPressed()) { //if first button is pressed
 
@@ -143,7 +138,7 @@ void selectionProductTask::tick() { //this is the task where you select the prod
                         this->state = IDLE;
                         this->pMachine->setMaking();
                     }
-                }
+                
                 break;
 
             }
