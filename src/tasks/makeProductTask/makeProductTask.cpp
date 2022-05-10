@@ -13,8 +13,9 @@
 makeProductTask::makeProductTask(Machine* pMachine) {
     this -> state = IDLE;
     this -> pMachine = pMachine;
-    this->pProduct = new ProductListed();
-    
+
+    this ->productsList = pMachine->getCatalog()->getProducts();
+    this->posProdMaking = pMachine->getSelectedProduct();
     this ->pServoMotor = this ->pMachine->getManagerActuators()->getServo();
     this->pDisplay = this->pMachine->getManagerActuators()->getDisplay();
 
@@ -24,7 +25,7 @@ void makeProductTask::tick() { //this is the task where you make the product
     switch (state){
         case IDLE: { //initialization
             if (this->pMachine->isMaking()){
-                this->timeStartMake=0;
+                this->timeStartMake=millis();
                 this->pServoMotor->setPosition(0);
                 this->state = START;
             }
@@ -33,7 +34,7 @@ void makeProductTask::tick() { //this is the task where you make the product
         
         case START: { 
             this->pDisplay->clear();
-            this->pDisplay->print( MSG_START + this->pProduct->getName()); //print the name of the product when the making process starts
+            this->pDisplay->print( MSG_START + (*productsList[posProdMaking]).getProduct()->getName()); //print the name of the product when the making process starts
             this->state = MAKE;
             
             break;
@@ -43,7 +44,7 @@ void makeProductTask::tick() { //this is the task where you make the product
             unsigned long currentTimeMake = millis(); 
             
             if (currentTimeMake - timeStartMake > T_MAKING) { //the process takes T_MAKING seconds to complete
-                currentTimeMake = millis();
+                //currentTimeMake = millis();
                 int currentAngle = this->pServoMotor->getAnglePosition();
                 if(currentAngle < 180){
                     this->pServoMotor->setPosition(currentAngle + GAPROTATION); //the  process is simulated by a rotations of the motor
@@ -57,7 +58,7 @@ void makeProductTask::tick() { //this is the task where you make the product
 
         case COMPLETE: {
             this->pDisplay->clear(); 
-            this->pDisplay->print(this->pProduct->getName() + MSG_COMPLETE); //print complete message
+            this->pDisplay->print((*productsList[posProdMaking]).getProduct()->getName()+ MSG_COMPLETE); //print complete message
             this->pMachine->setWait();
             this->state = IDLE;
             

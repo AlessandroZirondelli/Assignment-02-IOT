@@ -14,5 +14,6 @@ public:
 private:
     enum{UPDATE,CHECK,COMMUNICATION}state;
     Machine* machineCoffee;
+    ProductListed** productsList;
 };
 #endif

@@ -11,10 +11,10 @@ class Machine {
     
 public:
     Machine();
-    bool addCatalog(Catalog* catalog); // Aggiungo un catalogo alla machine coffee
-    Catalog* getCatalog(); //Ritorno il catalogo
+    bool addCatalog(Catalog* catalog); // Add catalog to machine coffee
+    Catalog* getCatalog(); 
 
-    //Metodi per il controllo dello stato della macchina
+    //Method for check the state of machine
     bool isStart(); 
     bool isSelect();
     bool isMaking();
@@ -22,7 +22,7 @@ public:
     bool isSelfTest();
     bool isAssistance();
 
-    //Metodi per settare lo stato della macchina
+    //Methods to set the state of machine
     void setStart();
     void setSelect();
     void setMaking();
@@ -30,33 +30,33 @@ public:
     void setSelfTest();
     void setAssistance();
 
-    //Metodi per settare la tipologia d'errore della macchina
-    void setErrorRefill(); //Se non ci sono prodotti disponilbili si setta a "Refill"
-    void setErrorNone(); // Se non ci sono errori si setta a "None"
-    void setTemperatureAlert(); //Se la temperatura è fuori norma si setta a "Temperature"
+    //methods to set the error of machine
+    void setErrorRefill(); //is set if there isnt products available
+    void setErrorNone(); // is set if there isnt error
+    void setTemperatureAlert(); //is set if there is a temperature problem
  
-    //Metodi per controllare la tipologia d'errore della macchine
+    //Methods for check the error of machine
     bool isErrorRefill();
     bool isErrorNone();
     bool isTemperatureAlert();
 
     
-    void incNumSelfTest(); // Incrememnta di uno il contatore che tiene conto di quanti SelfTest sono stati eseguiti
-    int getNumSelfTest();   //Ritorna il numero di selftest eseguiti
-    ManagerSensors* getManagerSensonrs();  // Manager dei sensori
-    ManagerActuators* getManagerActuators(); // Manager degli attuatori
+    void incNumSelfTest(); // Increment a counter that mantain how many SelfTest were perfomed
+    int getNumSelfTest();   //Return counter of SelfTest
+    ManagerSensors* getManagerSensonrs();  
+    ManagerActuators* getManagerActuators(); 
     
 
     void setSelectedProduct(int val);
     int getSelectedProduct(); 
 
 private:
-    enum { START, SELECT, MAKING, WAIT,SELFTEST, ASSISTANCE } state; // Stati della macchina
-    enum {NONE, REFILL,TEMPERATURE} alert; //Tipologia d'errore della macchina
+    enum { START, SELECT, MAKING, WAIT,SELFTEST, ASSISTANCE } state; //State of machine
+    enum {NONE, REFILL,TEMPERATURE} alert; //Tipology of error
     Catalog* catalog;
     ManagerSensors* mngSensors;
     ManagerActuators* mngActuators;
-    int numSelfTest; // Contatore che tiene il conto di quanti selfTest sono stati eseguiti
+    int numSelfTest; // Counter of selfTest
     int selectedProduct; //identify which product is selected
 };
 

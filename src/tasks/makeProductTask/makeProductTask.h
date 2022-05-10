@@ -14,11 +14,13 @@ private:
     enum { IDLE, START, MAKE, COMPLETE } state;
 
     Machine* pMachine;
-    ProductListed* pProduct;
+    ProductListed** productsList;
     Display* pDisplay;
     ServoMotor* pServoMotor; 
     
     unsigned long timeStartMake;
+    int posProdMaking;
+  
 
 public:
     makeProductTask(Machine* pMachine);

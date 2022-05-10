@@ -20,7 +20,7 @@ private:
     Button* pButtonDOWN;
     Button* pButtonMAKE; 
     Display* pDisplay;
-    ProductListed* pProduct;
+    ProductListed** productsList;
     
     unsigned long int timeStart;
     unsigned int currentPos;

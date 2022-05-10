@@ -15,6 +15,7 @@ selectionProductTask::selectionProductTask(Machine* pMachine) {
     this->pButtonMAKE = this->pMachine->getManagerSensonrs()->getButtonMake();
     this->pDisplay = this->pMachine->getManagerActuators()->getDisplay();
     this->currentPos = 0;
+    this->productsList =  pMachine->getCatalog()->getProducts();
 };
 
 void selectionProductTask::nextSelection(){
@@ -25,7 +26,7 @@ void selectionProductTask::nextSelection(){
 }
 void selectionProductTask::prevSelection(){
     currentPos--;
-    if(currentPos<=1){
+    if(currentPos<0){
         currentPos=2;
     }
     
@@ -36,7 +37,7 @@ void selectionProductTask::tick() { //this is the task where you select the prod
             this->timeStart = millis();
             this->currentPos = 0;
             this->state = SELECT;
-            //this->pDisplay->print(this->pMachine->getCatalog()->getProducts()); //printo sul display il primo prodotto
+            this->pDisplay->print((*productsList[currentPos]).getProduct()->getName()); //printo sul display il primo prodotto
             break;
         }
         
@@ -60,11 +61,13 @@ void selectionProductTask::tick() { //this is the task where you select the prod
                     this->nextSelection();
                     this->timeStart=millis(); //reset time , so the counter will count again 5 seconds
                     //print new product through access array with position
+                    pDisplay->print((*productsList[currentPos]).getProduct()->getName());
                 }
                 if(this->pButtonUP->isPressed()){
                     this->prevSelection();
                     this->timeStart=millis();//reset time , so the counter will count again 5 seconds
                     //print new product through access array with position currentPos
+                    pDisplay->print((*productsList[currentPos]).getProduct()->getName());
                 } 
             } 
         }

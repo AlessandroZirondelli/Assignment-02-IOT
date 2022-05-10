@@ -60,13 +60,14 @@ void setup() {
   //sched->addTask(taskSelfTest);
 
   taskCommunication->init(100);
-  sched->addTask(taskCommunication);
+  //sched->addTask(taskCommunication);
 
   taskCommunication->init(500);
   sched->addTask(taskCommunication);
-
+  
 }
 
 void loop() {
-  sched->schedule();
+ 
+  //sched->schedule();
 }

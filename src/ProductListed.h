@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "Product.h"
 
-//Identifica un prodotto che può essere aggiunto al catalogo, viene memorizzato un oggetto di tipo "Prodotto" e la sua quantità
+//Identify a product that cuold be added to catalog with a price
 class ProductListed {
 
 private:
@@ -19,8 +19,8 @@ public:
     void setProduct(Product* product);
     String getName(); 
     void setName(String name);
-    int getQuantity(); //Ritorno la quantità del prodotto listato
-    void setQuantity(int quantity); // Setto la quantità del prodotto listato 
+    int getQuantity();
+    void setQuantity(int quantity); 
 
 };
 
