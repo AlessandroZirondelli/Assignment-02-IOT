@@ -11,16 +11,16 @@ void Display::setup() {
     lcd.backlight();
 }
 
-void Display::clear() {
+void Display::clear() { 
     lcd.clear();
 }
 
-void Display::setCursor(int row, int column) {
+void Display::setCursor(int row, int column) { //set the line where the message will be printed
     this->column = column;
     this->row = row;
 }
 
-void Display::print(String message) {
+void Display::print(String message) { //print the message
     lcd.setCursor(this->column, this->row);
     lcd.print(message);
 }

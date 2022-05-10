@@ -136,7 +136,7 @@ void selectionProductTask::tick() { //this is the task where you select the prod
 
                     }
 
-                    this->pPotSugar->getPercentage();
+                    this->pPotSugar->getPercentage(); //get the percentage of sugar
 
                     if(this->pButtonMAKE->isPressed()) { //after the button MAKE is pressed, start the make of product
                         pProduct[currentPos].getProduct();

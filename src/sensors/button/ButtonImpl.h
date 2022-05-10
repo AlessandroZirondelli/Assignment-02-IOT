@@ -7,7 +7,7 @@ class ButtonImpl: public Button {
  
 public: 
   ButtonImpl(int pin);
-  bool isPressed();
+  bool isPressed(); //return when the button is pressed which means the pin is HIGH
 
 private:
   int pin;

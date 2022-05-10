@@ -36,11 +36,8 @@ void setup() {
   Task* taskWithdraw = new WithdrawTask(mac);
   Task* taskStartTask = new StartTask(mac);
   Task* taskCommunication = new CommunicationPcTask(mac);
-<<<<<<< HEAD
   Task* taskSelect = new selectionProductTask(mac);
   Task* taskMakeProduct = new makeProductTask(mac);
-=======
->>>>>>> master
   
   //taskSelfTest->init(500); // periodo selftest,
   //sched->addTask(taskSelfTest);
@@ -53,7 +50,6 @@ void setup() {
 
   taskStartTask->init(2000);
   //sched->addTask(taskStartTask);
-<<<<<<< HEAD
   
   taskCommunication->init(1000);
   //sched->addTask(taskCommunication);
@@ -64,11 +60,10 @@ void setup() {
   taskMakeProduct->init(1000);
   sched->addTask(taskMakeProduct);
 
-=======
   taskCommunication->init(500);
   sched->addTask(taskCommunication);
 
->>>>>>> master
+
 }
 
 void loop() {
