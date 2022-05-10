@@ -8,11 +8,9 @@
 CommunicationPcTask::CommunicationPcTask(Machine* machine) : machineCoffee(machine){
     state = UPDATE;
     MsgService.init();
-
 }
 void CommunicationPcTask::tick(){
-    
-    
+
     String qtnProd = String(0); // variabile stringa che conterrà la quantità di un prodotto
     String* nameProduct[3] = {new String("Chocolate"),new String("Tea"), new String("Coffee")}; // Array nome prodotti
     Catalog* catalog = machineCoffee->getCatalog(); 
@@ -37,7 +35,6 @@ void CommunicationPcTask::tick(){
             break;
 
         case CHECK: //Invio una stringa chce descrive se la macchina è in errore o meno e se sì indica la tipologia di errore
-            
             if(machineCoffee->isErrorNone()){ // Si verifica se la macchina non è in errore
                 MsgService.sendMsg("Alert None");
                 this->state = UPDATE;
@@ -51,7 +48,7 @@ void CommunicationPcTask::tick(){
             break;  
 
         case COMMUNICATION: // Se la macchina è in uno stato d'errore si aspetta un input dal pc per fare il refill dei prodotto o per essere resettato allo stato di "Start"
-            if (MsgService.isMsgAvailable()) {
+            if(MsgService.isMsgAvailable()) {
                 Msg* msg = MsgService.receiveMsg();    
                 if (msg->getContent().equals("refilled")){ // Se il pc manda un segnale di "refilled" si riforniscono tutti i prodotti con la max quantità possibile
                     

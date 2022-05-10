@@ -9,15 +9,14 @@
 class Catalog {
 
 private:
-    ProductListed* productList[MAX_PRODUCT]; // Array che memorizzano i prodotti presenti nella macchina
-    int numProd; // Numero di prodotti memorizzati nel catalogo
+    ProductListed* productList[MAX_PRODUCT]; // Array mantains all products 
+    int numProd; // Number of products in the machine
 public:
     Catalog();
-    int getQtnProduct(String name);  // Ritorna la quanittà di un prodotto
-    void setQtnProduct(String name, int qtn); // Setto la quantità di un prodotto
-    bool addProduct(ProductListed* product); // Aggiungo un prodotto al catalogo
-    int getTotalDisponibility(); // Ritorna la quantità totale tra tutti i prodotto, fa la somma di tutte le quantità dei singoli prodotti
-
+    int getQtnProduct(String name);  // Return the quantity of product
+    void setQtnProduct(String name, int qtn); // Set quantity of product
+    bool addProduct(ProductListed* product); //add product to catalog
+    int getTotalDisponibility(); // Return the total quantity of product, do the sum of all product's quantity
 
 };
 

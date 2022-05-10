@@ -13,9 +13,10 @@ Scheduler* sched;
 
 void setup() {
   sched = new Scheduler();
-  sched -> init(100);
+  sched -> init(10);
 
   Serial.begin(9600);
+
   Machine* mac = new Machine();
   Catalog* catalog = new Catalog();
   
@@ -41,31 +42,28 @@ void setup() {
   Task* taskSelect = new selectionProductTask(mac);
   Task* taskMakeProduct = new makeProductTask(mac);
   
-  //taskSelfTest->init(500); // periodo selftest,
+  taskStartTask->init(40);
+  //sched->addTask(taskStartTask);
+
+ 
+
+  taskSelect->init(40);
+//  sched->addTask(taskSelect);
+
+  taskMakeProduct->init(40);
+  //sched->addTask(taskMakeProduct);
+
+  taskWithdraw->init(40);
+  //sched->addTask(taskWithdraw);
+
+  taskSelfTest->init(100);
   //sched->addTask(taskSelfTest);
 
-  //taskWithdraw->init(4000);
-  //sched->addTask(taskWithdraw);
-
-  //mac->setWait();
-  //sched->addTask(taskWithdraw);
-
-  taskStartTask->init(2000);
-  //sched->addTask(taskStartTask);
-  
-  taskCommunication->init(1000);
-  //sched->addTask(taskCommunication);
-
-  taskSelect->init(1000);
-  //sched->addTask(taskSelect);
-
-  taskMakeProduct->init(1000);
-  sched->addTask(taskMakeProduct);
+  taskCommunication->init(100);
+  sched->addTask(taskCommunication);
 
 }
 
 void loop() {
-
- sched->schedule();
-   
+  sched->schedule();
 }

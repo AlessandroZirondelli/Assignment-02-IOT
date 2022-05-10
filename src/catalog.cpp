@@ -8,22 +8,22 @@ Catalog::Catalog(){
 }
 int Catalog::getQtnProduct(String name){
         for(int i = 0; i<numProd;i++){
-            if(productList[i] -> getName().equals(name)){  // Ricerco il prodotto per nome 
-                return productList[i] -> getQuantity(); // Ritorno la qtn se il prodotto è presente
+            if(productList[i] -> getName().equals(name)){  // I search product by name
+                return productList[i] -> getQuantity(); // Get back the quantity if the product is present
             }
         }
-        return 0; // Se il prodotto non è presente ritorno 0
+        return 0; // If the product isnt't present return 0
 }
 
 void Catalog::setQtnProduct(String name, int quantity){
         for(int i = 0; i<numProd;i++){
-            if(productList[i] -> getName().equals(name)){ // Ricerco il prodotto per nome 
-                productList[i] -> setQuantity(quantity); // Setto la qtn del prodotto 
+            if(productList[i] -> getName().equals(name)){ // Search prodcut by name 
+                productList[i] -> setQuantity(quantity); //Set quantity of the product
             }
         }   
 }
 bool Catalog::addProduct(ProductListed* product){ // 
-    if (numProd < MAX_PRODUCT){ // Controllo se c'è posto nell'array dei prodotti
+    if (numProd < MAX_PRODUCT){ //Check if the max is reached 
         productList[numProd] = product;
         numProd++;
         return true;
@@ -34,7 +34,7 @@ bool Catalog::addProduct(ProductListed* product){ //
 int Catalog::getTotalDisponibility(){
     int tot = 0;
     for(int i = 0; i<numProd;i++){
-        tot = tot + productList[i] -> getQuantity();   // Sommo tutte le quantità dei singoli prodotti
+        tot = tot + productList[i] -> getQuantity();   //Do the sum beetwen all product's quantity
     }
     return tot;
 }
