@@ -36,11 +36,8 @@ void setup() {
   Task* taskWithdraw = new WithdrawTask(mac);
   Task* taskStartTask = new StartTask(mac);
   Task* taskCommunication = new CommunicationPcTask(mac);
-<<<<<<< HEAD
   Task* taskSelect = new selectionProductTask(mac);
   Task* taskMakeProduct = new makeProductTask(mac);
-=======
->>>>>>> master
   
   //taskSelfTest->init(500); // periodo selftest,
   //sched->addTask(taskSelfTest);
