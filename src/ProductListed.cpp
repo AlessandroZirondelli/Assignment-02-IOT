@@ -20,16 +20,16 @@ String ProductListed::getName(){
 void ProductListed::setName(String name){
     this->product ->setName(name);
 }
-int ProductListed::getQuantity(){
+int ProductListed::getQuantity(){// Ritorno la quantità del prodotto listato
     return this->quantity;
 }
 void ProductListed::setQuantity(int quantity){
     this->quantity = quantity;
 }
-Product* ProductListed::getProduct(){
+Product* ProductListed::getProduct(){ 
      return this->product;
  }
-void ProductListed::setProduct(Product* product){
+void ProductListed::setProduct(Product* product){  // Setto la quantità del prodotto listato 
     this->product = product;
 }
 

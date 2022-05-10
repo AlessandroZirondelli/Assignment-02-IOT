@@ -4,6 +4,7 @@
 #include <Arduino.h>
 //#include <string>
 
+//Identifica un prodotto memoriazzando nome e prezzo
 class Product {
 
 private:

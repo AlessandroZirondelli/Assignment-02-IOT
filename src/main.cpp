@@ -14,15 +14,15 @@ void setup() {
   //Pir* pir = new Pir(PIT_PIN);
   //pir->calibrate(); 
   sched = new Scheduler();
-  sched -> init(50);
+  sched -> init(100);
 
   Serial.begin(9600);
   Machine* mac = new Machine();
   Catalog* catalog = new Catalog();
   
-  ProductListed* productInput[] = {new ProductListed(new Product("Chocolate"),40),
-                                   new ProductListed(new Product("Tea"),30),
-                                   new ProductListed(new Product("Coffee"),50)}; 
+  ProductListed* productInput[] = {new ProductListed(new Product("Chocolate"),MAX_QTN_CHOCOLATE),
+                                   new ProductListed(new Product("Tea"),MAX_QTN_TEA),
+                                   new ProductListed(new Product("Coffee"),MAX_QTN_COFFEE)}; 
   int lengthInput = sizeof(productInput)/sizeof(productInput[0]);
   for(int i = 0 ; i<lengthInput; i++){
     bool res = catalog -> addProduct( productInput[i]);
@@ -37,6 +37,7 @@ void setup() {
   Task* taskWithdraw = new WithdrawTask(mac);
   Task* taskStartTask = new StartTask(mac);
   Task* taskCommunication = new CommunicationPcTask(mac);
+  
   //taskSelfTest->init(500); // periodo selftest,
   //sched->addTask(taskSelfTest);
   //taskWithdraw->init(4000);
@@ -47,9 +48,8 @@ void setup() {
 
   //taskStartTask->init(2000);
   //sched->addTask(taskStartTask);
-  taskCommunication->init(1000);
+  taskCommunication->init(500);
   sched->addTask(taskCommunication);
-
 
 }
 

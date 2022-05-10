@@ -11,16 +11,18 @@ class Machine {
     
 public:
     Machine();
-    void init();
-    bool addCatalog(Catalog* catalog);
-    Catalog* getCatalog();
-    bool isStart();
+    bool addCatalog(Catalog* catalog); // Aggiungo un catalogo alla machine coffee
+    Catalog* getCatalog(); //Ritorno il catalogo
+
+    //Metodi per il controllo dello stato della macchina
+    bool isStart(); 
     bool isSelect();
     bool isMaking();
     bool isWait();
     bool isSelfTest();
     bool isAssistance();
 
+    //Metodi per settare lo stato della macchina
     void setStart();
     void setSelect();
     void setMaking();
@@ -28,26 +30,29 @@ public:
     void setSelfTest();
     void setAssistance();
 
-    void setErrorRefill();
-    void setErrorNone();
-    void setTemperatureAlert();
-
+    //Metodi per settare la tipologia d'errore della macchina
+    void setErrorRefill(); //Se non ci sono prodotti disponilbili si setta a "Refill"
+    void setErrorNone(); // Se non ci sono errori si setta a "None"
+    void setTemperatureAlert(); //Se la temperatura è fuori norma si setta a "Temperature"
+ 
+    //Metodi per controllare la tipologia d'errore della macchine
     bool isErrorRefill();
     bool isErrorNone();
     bool isTemperatureAlert();
 
-    void incNumSelfTest();
-    int getNumSelfTest();
-    ManagerSensors* getManagerSensonrs();
-    ManagerActuators* getManagerActuators();
+    
+    void incNumSelfTest(); // Incrememnta di uno il contatore che tiene conto di quanti SelfTest sono stati eseguiti
+    int getNumSelfTest();   //Ritorna il numero di selftest eseguiti
+    ManagerSensors* getManagerSensonrs();  // Manager dei sensori
+    ManagerActuators* getManagerActuators(); // Manager degli attuatori
 
 private:
-    enum { START, SELECT, MAKING, WAIT,SELFTEST, ASSISTANCE } state;
-    enum {NONE, REFILL,TEMPERATURE} alert; 
+    enum { START, SELECT, MAKING, WAIT,SELFTEST, ASSISTANCE } state; // Stati della macchina
+    enum {NONE, REFILL,TEMPERATURE} alert; //Tipologia d'errore della macchina
     Catalog* catalog;
     ManagerSensors* mngSensors;
     ManagerActuators* mngActuators;
-    int numSelfTest;
+    int numSelfTest; // Contatore che tiene il conto di quanti selfTest sono stati eseguiti
 
 };
 
