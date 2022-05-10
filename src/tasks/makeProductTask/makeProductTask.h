@@ -3,9 +3,7 @@
 
 #include "tasks/Task.h"
 #include "machine.h"
-
-#include "product.h"
-
+#include "ProductListed.h"
 #include "actuators/display/display.h"
 #include "actuators/servo/servo_motor.h"
 
