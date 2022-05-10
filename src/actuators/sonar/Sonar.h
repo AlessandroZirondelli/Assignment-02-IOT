@@ -2,7 +2,6 @@
 #define __SONAR__
 
 #include "./actuators/ProximitySensor.h"
-#define NO_OBJ_DETECTED -1
 
 class Sonar: public ProximitySensor {
 
@@ -14,7 +13,6 @@ public:
 private:
     const float vs = 331.5 + 0.6*20;
     float getSoundSpeed();
-    
     float temperature;    
     int echoPin, trigPin;
     long timeOut;

@@ -10,6 +10,7 @@
      this -> machine = machine;
      this -> pir = this->machine->getManagerSensonrs()->getPir();
      this->state = INIT;
+     //this->display = this->machine ->getManagerActuators()->getDisplay();
      //attachInterrupt(digitalPinToInterrupt(PIR_PIN),wakeUp,RISING); TO INSERT
  };
 
@@ -17,7 +18,8 @@
      switch(state){
         case INIT: {
             if(this->machine->isStart()){
-                Serial.println("Welcome");  
+                Serial.println("Welcome"); 
+                //display->print("Welcome");
                 this->state = IDLE;
             }
             break; 
@@ -26,6 +28,7 @@
         case IDLE: {
             if(this->machine->isStart()){
                 Serial.println("Ready");
+                //display->print("Ready");
                 this->state = CHECK;
                 this->time = millis();
             }
@@ -33,10 +36,9 @@
         }
 
         case CHECK: {
-            Serial.println("Sono in check");
             if(this->machine->getCatalog()->getTotalDisponibility()==0){ //if there aren't any products
                 this->state=ERROR;
-                Serial.println("Prodotti terminati");
+                //Serial.println("Prodotti terminati");
                 break;
             }
             if(!(this->pir->isDetected())){ //if user is not detected by pir
@@ -59,6 +61,8 @@
         case ERROR: {
             this->machine->setErrorRefill();
             this->machine->setAssistance();
+            this->state = IDLE;
+            //this->dispplay->print("Assistance required");
             break;
         }
 
@@ -68,7 +72,7 @@
             sleep_enable();
             sleep_mode();
             sleep_disable();*/
-            Serial.println("SONO IN SLEEP E DEVO DORMIRE 5 sec");
+            //Serial.println("SONO IN SLEEP E DEVO DORMIRE 5 sec");
             delay(5000);//to delete. It's only a test
             this->state = IDLE;
 

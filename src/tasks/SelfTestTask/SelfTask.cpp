@@ -13,7 +13,6 @@
      this -> machine = machine;
      this ->tempSensor = this->machine->getManagerSensonrs()->getTemp();
      this ->servoMotor = this ->machine->getManagerActuators()->getServo();
-     //this ->servoMotor ->on();
      //this -> display = new Display();
      this -> state = IDLE;
      this -> time = 0;
@@ -26,12 +25,12 @@
             unsigned long curr = millis();
             Serial.println((curr-this->time)/1000);
             if(this->machine->isStart()){
-                Serial.print("sono dentro");
                  if( ((curr-this->time)/1000) >= T_CHECK){ // if TCHECK time is passed 
                     this->servoMotor->setPosition(0);
                     this->machine->setSelfTest();
                     this->state = SIMULATION;
                     this->time = millis();
+                    //display.print("Sono in idle");
                     Serial.println("Sono in idle"); 
                  }
             }  
@@ -39,7 +38,6 @@
         }
 
         case SIMULATION: {
-            Serial.println("Sono in simulation");
             int currentAngle = this->servoMotor->getAnglePosition();
             if(currentAngle < 180){
                 this->servoMotor->setPosition(currentAngle+GAPROTATION);
@@ -47,14 +45,11 @@
                 this->servoMotor->setPosition(0);
                 this->state = CHECK;
             }
-            Serial.print("Angolo ");
-            Serial.println(currentAngle);
             this -> machine -> incNumSelfTest();
             break;
         }
 
         case CHECK: {
-            Serial.println("Sono in check");
             float temp = tempSensor->getTemperature();
             if( temp > TEMPMAX || temp < TEMPMIN){
                 this->state = ERROR;
@@ -62,8 +57,6 @@
                 this->machine->setStart();
                 this->state = IDLE;
             }
-            Serial.print("Temp");
-            Serial.println(temp);
             break;
         }
         

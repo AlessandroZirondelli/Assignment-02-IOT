@@ -3,6 +3,7 @@
 
 #include "./tasks/Task.h"
 #include "./machine.h"
+#include "./actuators/display/display.h"
 
 class StartTask : public Task{
 
@@ -14,6 +15,7 @@ private:
     enum{INIT,IDLE,CHECK,ERROR,SLEEP} state;
     Machine * machine;
     Pir* pir;
+    Display* display;
     unsigned long int time;
 };
 #endif

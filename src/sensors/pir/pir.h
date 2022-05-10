@@ -7,8 +7,8 @@ class Pir: public PresenceSensor {
  
 public: 
   Pir(int pin);
-  bool isDetected();
-  void calibrate();
+  bool isDetected(); // Ritorna true se viene rilevato una persona
+  void calibrate(); // Calibra il sensore
 
 private:
   int pin;
