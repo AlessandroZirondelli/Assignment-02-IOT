@@ -22,6 +22,7 @@ private:
     unsigned long timeToRotate;
     int gapRotation;
     int posProdMaking;
+    float gapRotationTime;
   
 
 public:
