@@ -26,4 +26,12 @@
 #define TEMPMIN 17 // Celsius degrees 
 #define TEMPMAX 24 // Celsius degrees 
 
+#define START_PERIOD 40
+#define SELECT_PERIOD 40
+#define MAKE_PERIOD 40
+#define WITHDRAW_PERIOD 40
+#define SELFTEST_PERIOD 100
+#define COMMUNICATION_PERIOD 100
+
+
 #endif

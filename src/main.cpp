@@ -13,26 +13,26 @@ Scheduler* sched;
 
 void setup() {
   sched = new Scheduler();
-  sched -> init(10);
+  sched -> init(1);
 
   Serial.begin(9600);
 
   Machine* mac = new Machine();
   Catalog* catalog = new Catalog();
   
-  // arary che contiene i prodotti con relativa quantità
+  // array that contains product in the machine
   ProductListed* productInput[] = {new ProductListed(new Product("Chocolate"),MAX_QTN_CHOCOLATE),
                                    new ProductListed(new Product("Tea"),MAX_QTN_TEA),
                                    new ProductListed(new Product("Coffee"),MAX_QTN_COFFEE)}; 
-  int lengthInput = sizeof(productInput)/sizeof(productInput[0]); // Lunghezza array che contiene i prodotti
+  int lengthInput = sizeof(productInput)/sizeof(productInput[0]); //Mantain the size of array productInput
  
   for(int i = 0 ; i<lengthInput; i++){
-    bool res = catalog -> addProduct(productInput[i]); // Aggiungo i prodotti al catalogo
+    bool res = catalog -> addProduct(productInput[i]); // Add products to catalog
     if(res == false){
       Serial.print("Max product reached");
     }
   }
-  mac -> addCatalog(catalog); // Aggiungo il catalogo all'oggetto Machine
+  mac -> addCatalog(catalog); 
 
 
   Task* taskSelfTest = new SelfTask(mac);
@@ -42,32 +42,28 @@ void setup() {
   Task* taskSelect = new selectionProductTask(mac);
   Task* taskMakeProduct = new makeProductTask(mac);
   
-  taskStartTask->init(40);
-  //sched->addTask(taskStartTask);
+  taskStartTask->init(START_PERIOD);
+  sched->addTask(taskStartTask);
 
- 
+  taskSelect->init(SELECT_PERIOD);
+  sched->addTask(taskSelect);
 
-  taskSelect->init(40);
-//  sched->addTask(taskSelect);
+  taskMakeProduct->init(MAKE_PERIOD);
+  sched->addTask(taskMakeProduct);
 
-  taskMakeProduct->init(40);
-  //sched->addTask(taskMakeProduct);
+  taskWithdraw->init(WITHDRAW_PERIOD);
+  sched->addTask(taskWithdraw);
 
-  taskWithdraw->init(40);
-  //sched->addTask(taskWithdraw);
+  taskSelfTest->init(SELFTEST_PERIOD);
+  sched->addTask(taskSelfTest);
 
-  taskSelfTest->init(100);
-  //sched->addTask(taskSelfTest);
-
-  taskCommunication->init(100);
-  //sched->addTask(taskCommunication);
-
-  taskCommunication->init(500);
+  taskCommunication->init(COMMUNICATION_PERIOD);
   sched->addTask(taskCommunication);
+
+
   
 }
 
 void loop() {
- 
-  //sched->schedule();
+  sched->schedule();
 }
