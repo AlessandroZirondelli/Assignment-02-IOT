@@ -19,7 +19,7 @@ makeProductTask::makeProductTask(Machine* pMachine) {
     this ->pServoMotor = this ->pMachine->getManagerActuators()->getServo();
     this->pDisplay = this->pMachine->getManagerActuators()->getDisplay();
     this->gapRotation =  1;
-    this->gapRotationTime = T_MAKING / MAX_ROTATION;
+    this->gapRotationTime = T_MAKING / MAX_ROTATION; // time in seconds to do an angle of 1 degree
 };
 
 void makeProductTask::tick() { //this is the task where you make the product 
@@ -44,12 +44,12 @@ void makeProductTask::tick() { //this is the task where you make the product
         case MAKE: {
             unsigned long currentTimeMake = millis(); 
             
-            if (currentTimeMake - timeStartMake < T_MAKING) { // making 
-                // Gradi totali / TMaking ---> 180/ 10 ---> gradi al secondo
+            if (((currentTimeMake - timeStartMake)/1000) < T_MAKING) { // making, check if it's passed time to finish make product 
                 unsigned long currentTimeToRotate= millis();
-                if(currentTimeToRotate-timeToRotate >= this->gapRotationTime ){
+                if(((currentTimeToRotate-timeToRotate)/1000) >= this->gapRotationTime ){ //check if passed enough time to move servo of one degree
                     int currentPos =  this->pServoMotor->getAnglePosition();
                     this->pServoMotor->setPosition(currentPos + this->gapRotation);
+                    this->timeToRotate=millis();
                 }
 
             }else{ //finish making

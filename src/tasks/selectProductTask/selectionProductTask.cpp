@@ -45,7 +45,7 @@ void selectionProductTask::tick() { //this is the task where you select the prod
         case SELECT: { 
             if(!this->pButtonMAKE->isPressed()){ //if user doesn't press make button for T_BUTTON time , system return on START state
                 unsigned long int current = millis();
-                if(current-timeStart>=T_BUTTON){
+                if(((current-timeStart)/1000)>=T_BUTTON){
                     this->state=IDLE;
                     this->pMachine->setStart();
                     break;

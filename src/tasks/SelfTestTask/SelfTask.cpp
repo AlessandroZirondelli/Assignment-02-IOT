@@ -57,7 +57,6 @@
         }
         
         case ERROR: {
-            //print on display LCD "Assistance required";
             this->display->print("Assistance required");
             this->machine->setAssistance();
             this->machine->setTemperatureAlert();

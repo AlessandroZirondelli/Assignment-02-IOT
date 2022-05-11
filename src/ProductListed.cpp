@@ -1,5 +1,4 @@
 #include <Arduino.h>
-//#include <string>
 #include "Product.h"
 #include "ProductListed.h"
 ProductListed::ProductListed(){

@@ -31,7 +31,7 @@ void setup() {
   for(int i = 0 ; i<lengthInput; i++){
     bool res = catalog -> addProduct(productInput[i]); // Add products to catalog
     if(res == false){
-      Serial.print("Max product reached");
+      mac->getManagerActuators()->getDisplay()->print("Max product reached");
     }
   }
   mac -> addCatalog(catalog); 

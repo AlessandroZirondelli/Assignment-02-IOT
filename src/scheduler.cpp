@@ -45,9 +45,6 @@ void Scheduler::schedule(){
         }
       } else {
         taskList[i]->tick();
-        if (taskList[i]->isCompleted()){
-          taskList[i]->setActive(false);
-        }
       }
     }
   }

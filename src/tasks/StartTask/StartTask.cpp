@@ -69,9 +69,7 @@
             set_sleep_mode(SLEEP_MODE_PWR_DOWN);
             sleep_enable();
             sleep_mode();
-            sleep_disable();
-            //Serial.println("SONO IN SLEEP E DEVO DORMIRE 5 sec");
-            
+            sleep_disable();          
             this->state = IDLE;
 
         }

@@ -20,7 +20,7 @@
 #define T_TIMEOUT 5
 #define DISTANCE 0.40 //meters
 #define T_IDLE 60 //seconds
-#define T_MAKING 10 //sec
+#define T_MAKING 10 //seconds
 #define T_BUTTON 5 //seconds
 
 #define TEMPMIN 17 // Celsius degrees 

@@ -2,7 +2,6 @@
 #define __PRODUCT__
 
 #include <Arduino.h>
-//#include <string>
 
 //Identify a product with name and price
 class Product {
