@@ -1,3 +1,10 @@
+/*
+  11/05/2022
+  Authors
+  Alessandro Zirondelli
+  Lorenzo Sansone
+  Arianna Pagano
+*/
 #include <Arduino.h>
 #include "machine.h"
 #include "scheduler.h"
