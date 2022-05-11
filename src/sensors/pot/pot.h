@@ -5,9 +5,7 @@ class Potentiometer {
  
 public: 
   Potentiometer(int pin);
-
-  float getValue();  
-  int getPercentage(); 
+  int getLevel();   //return level of sugar
 
 private:
   int pin;

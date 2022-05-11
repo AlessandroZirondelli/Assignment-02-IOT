@@ -5,27 +5,27 @@
 #include "./actuators/servo/servo_motor_impl.h"
 #include "config.h"
 
-#define GAPROTATION 30
 
 #define MSG_START "Making a "
 #define MSG_COMPLETE " is ready"
 
+#define MAX_ROTATION 180 //degree
 makeProductTask::makeProductTask(Machine* pMachine) {
     this -> state = IDLE;
     this -> pMachine = pMachine;
 
-    this ->productsList = pMachine->getCatalog()->getProducts();
-    this->posProdMaking = pMachine->getSelectedProduct();
+    this ->productsList = this->pMachine->getCatalog()->getProducts();
+    this->posProdMaking = this->pMachine->getSelectedProduct();
     this ->pServoMotor = this ->pMachine->getManagerActuators()->getServo();
     this->pDisplay = this->pMachine->getManagerActuators()->getDisplay();
-
+    this->gapRotation =  1;
+    this->gapRotationTime = T_MAKING / MAX_ROTATION;
 };
 
 void makeProductTask::tick() { //this is the task where you make the product 
     switch (state){
         case IDLE: { //initialization
-            if (this->pMachine->isMaking()){
-                this->timeStartMake=millis();
+            if (this->pMachine->isMaking()){  
                 this->pServoMotor->setPosition(0);
                 this->state = START;
             }
@@ -36,22 +36,24 @@ void makeProductTask::tick() { //this is the task where you make the product
             this->pDisplay->clear();
             this->pDisplay->print( MSG_START + (*productsList[posProdMaking]).getProduct()->getName()); //print the name of the product when the making process starts
             this->state = MAKE;
-            
+            this->timeStartMake=millis();
+            this->timeToRotate=millis();
             break;
         }
 
         case MAKE: {
             unsigned long currentTimeMake = millis(); 
             
-            if (currentTimeMake - timeStartMake > T_MAKING) { //the process takes T_MAKING seconds to complete
-                //currentTimeMake = millis();
-                int currentAngle = this->pServoMotor->getAnglePosition();
-                if(currentAngle < 180){
-                    this->pServoMotor->setPosition(currentAngle + GAPROTATION); //the  process is simulated by a rotations of the motor
-                } else if(currentAngle >= 180){
-                    this->pServoMotor->setPosition(0);
-                    this->state = COMPLETE;
-                }                
+            if (currentTimeMake - timeStartMake < T_MAKING) { // making 
+                // Gradi totali / TMaking ---> 180/ 10 ---> gradi al secondo
+                unsigned long currentTimeToRotate= millis();
+                if(currentTimeToRotate-timeToRotate >= this->gapRotationTime ){
+                    int currentPos =  this->pServoMotor->getAnglePosition();
+                    this->pServoMotor->setPosition(currentPos + this->gapRotation);
+                }
+
+            }else{ //finish making
+                this->state=COMPLETE;
             }
             break;
         }

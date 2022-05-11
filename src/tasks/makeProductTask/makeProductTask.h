@@ -19,6 +19,8 @@ private:
     ServoMotor* pServoMotor; 
     
     unsigned long timeStartMake;
+    unsigned long timeToRotate;
+    int gapRotation;
     int posProdMaking;
   
 

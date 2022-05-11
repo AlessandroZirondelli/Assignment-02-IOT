@@ -3,7 +3,7 @@
 #include "Arduino.h"
 
 /**
- * Initializae state update
+ * Initialize state update
  * */
 CommunicationPcTask::CommunicationPcTask(Machine* machine) : machineCoffee(machine){
     state = UPDATE;
@@ -29,7 +29,7 @@ void CommunicationPcTask::tick(){
                 qtnProd = String(catalog->getQtnProduct((*productsList[i]).getProduct()->getName())); // Take quantity of a product from catalog
                 MsgService.sendMsg((*productsList[i]).getProduct()->getName() + " " + qtnProd); // Send a message with the name of product and quantity
             }
-            MsgService.sendMsg("SelfTest " + String(machineCoffee->getNumSelfTest())); // Invio il numero di self-test eseguiti fino ad adesso
+            MsgService.sendMsg("SelfTest " + String(machineCoffee->getNumSelfTest())); // Send number of executed self-test until now
             
             this->state = CHECK;
             break;

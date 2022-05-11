@@ -49,6 +49,8 @@ public:
 
     void setSelectedProduct(int val);
     int getSelectedProduct(); 
+    void setSugarLevel(int val);
+    int getSugarLevel(); 
 
 private:
     enum { START, SELECT, MAKING, WAIT,SELFTEST, ASSISTANCE } state; //State of machine
@@ -58,6 +60,7 @@ private:
     ManagerActuators* mngActuators;
     int numSelfTest; // Counter of selfTest
     int selectedProduct; //identify which product is selected
+    int selectedSugar;
 };
 
 #endif

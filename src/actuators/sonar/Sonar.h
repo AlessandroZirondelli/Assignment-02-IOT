@@ -11,7 +11,6 @@ public:
   void setTemperature(float temp);  
 
 private:
-    const float vs = 331.5 + 0.6*20;
     float getSoundSpeed();
     float temperature;    
     int echoPin, trigPin;

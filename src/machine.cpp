@@ -4,14 +4,14 @@
 #include "./sensors/ManagerSensorsImpl.h"
 
 Machine::Machine(){
-    state = START;
+    this->state = START;
     this->catalog = new Catalog();
     this->mngActuators = new ManagerActuatorsImpl();
     this->mngSensors = new ManagerSensorsImpl();
     this->numSelfTest = 0;
-    alert = NONE;
-    selectedProduct = -1; // if no product is selected , it's set to -1. Also its value is position of product in list of catalog.
-    
+    this->alert = NONE;
+    this->selectedProduct = 0; // if no product is selected , it's set to 0 becuase it's the first product to show
+    this->selectedSugar = 0;
 }
 
     
@@ -98,4 +98,11 @@ int Machine::getSelectedProduct(){
 
 void Machine::setSelectedProduct(int val){
     this->selectedProduct = val;
+}
+
+void Machine::setSugarLevel(int val){
+    this->selectedSugar = val;
+}
+int Machine:: getSugarLevel(){
+    return this->selectedSugar;
 }
