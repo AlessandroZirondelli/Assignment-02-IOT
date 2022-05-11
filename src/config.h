@@ -33,5 +33,4 @@
 #define SELFTEST_PERIOD 100
 #define COMMUNICATION_PERIOD 100
 
-
 #endif

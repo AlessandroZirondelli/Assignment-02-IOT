@@ -8,15 +8,17 @@
 #include "./tasks/CommunicationTask/CommunicationPcTask.h"
 #include "./tasks/selectProductTask/selectionProductTask.h"
 #include "./tasks/makeProductTask/makeProductTask.h"
+#include "functions.h"
 
 Scheduler* sched;
-
+int periodsTask[]={START_PERIOD,SELECT_PERIOD,MAKE_PERIOD,WITHDRAW_PERIOD,SELFTEST_PERIOD,COMMUNICATION_PERIOD};
 void setup() {
   sched = new Scheduler();
-  sched -> init(1);
+
+  int schedPeriod = calculateGCD(periodsTask,6);
+  sched -> init(schedPeriod);
 
   Serial.begin(9600);
-
   Machine* mac = new Machine();
   Catalog* catalog = new Catalog();
   

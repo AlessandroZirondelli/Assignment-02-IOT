@@ -22,7 +22,6 @@
     switch (state){
         case IDLE: { //need to check if it's possibile to do a self-test
             unsigned long curr = millis();
-            Serial.println((curr-this->time)/1000);
             if(this->machine->isStart()){
                  if( ((curr-this->time)/1000) >= T_CHECK){ // if TCHECK time is passed 
                     this->servoMotor->setPosition(0);
